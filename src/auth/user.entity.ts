@@ -11,10 +11,13 @@ export class User {
   @Column()
   password: string;
 
+  @Column()
+  token: string;
+
   @CreateDateColumn()
-  createdDate: Date;
+  createdAt: Date;
   
   @UpdateDateColumn()
-  updatedDate: Date;
+  updatedAt: Date;
 
 }

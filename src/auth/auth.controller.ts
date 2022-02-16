@@ -19,9 +19,7 @@ export class AuthController {
   }
 
   @Post('/signin')
-  async signIn(
-    @Body() authCredentialsDto: AuthCredentialsDto, @Response() res
-  ): Promise<{ accessToken: string }> {
+  async signIn(@Body() authCredentialsDto: AuthCredentialsDto, @Response() res): Promise<{ accessToken: string }> {
     const data = await this.authService.signIn(authCredentialsDto);
     return res.status(HttpStatus.OK).json({
         status: HttpStatus.OK,
