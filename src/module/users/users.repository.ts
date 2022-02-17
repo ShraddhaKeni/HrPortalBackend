@@ -3,6 +3,7 @@ import { EntityRepository, Repository } from 'typeorm';
 import { AuthCredentialsDto } from '../../auth/dto/auth-credentials.dto';
 import * as bcrypt from 'bcrypt';
 import { User } from './entities/user.entity';
+import { UpdateUserDto } from './dto/update-user.dto';
   
   @EntityRepository(User)
   export class UsersRepository extends Repository<User> {
@@ -31,6 +32,31 @@ import { User } from './entities/user.entity';
         return new Promise(resolve => {
           const users = this.find();
           resolve(users)
+        });
+      }
+
+      async findUserData(user_id: number): Promise<User> {
+        return new Promise(resolve => {
+          const user = this.findOne({
+            where: {
+              id: user_id
+            }
+          });
+          resolve(user);
+        });
+      }
+
+      async updateUserData(user_id: number, updateUserDto: UpdateUserDto): Promise<User> {
+        return new Promise(resolve => {
+            this.update(user_id,updateUserDto).then(
+              resp => {
+                const user = this.findOne({
+                  where: {
+                    id: user_id
+                  }
+                });
+                resolve(user);
+            });
         });
       }
   }
