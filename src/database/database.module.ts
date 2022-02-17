@@ -31,7 +31,7 @@ import { TypeOrmModule } from '@nestjs/typeorm';
             imports: [ConfigModule],
             inject: [ConfigService],
             useFactory: async (configService: ConfigService) => {
-                const isProduction = process.env.NODE_ENV === 'prod';
+                const isProduction = process.env.NODE_ENV.trim() === 'prod';
         
                 return {
                     ssl: isProduction,
