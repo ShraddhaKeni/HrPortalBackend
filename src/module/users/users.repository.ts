@@ -1,9 +1,10 @@
-import { ConflictException, InternalServerErrorException } from '@nestjs/common';
+import { ConflictException, HttpException, HttpStatus, InternalServerErrorException } from '@nestjs/common';
 import { EntityRepository, Repository } from 'typeorm';
 import { AuthCredentialsDto } from '../../auth/dto/auth-credentials.dto';
 import * as bcrypt from 'bcrypt';
 import { User } from './entities/user.entity';
 import { UpdateUserDto } from './dto/update-user.dto';
+import { isEmpty, isNotEmptyObject } from 'class-validator';
 
 @EntityRepository(User)
 export class UsersRepository extends Repository<User> {
@@ -28,6 +29,7 @@ export class UsersRepository extends Repository<User> {
     }
   }
 
+
   async findAllUsers(): Promise<User[]> {
     return new Promise(resolve => {
       const users = this.find();
@@ -35,18 +37,20 @@ export class UsersRepository extends Repository<User> {
     });
   }
 
-  async findUserData(user_id: number): Promise<User> {
-    return new Promise(resolve => {
-      const user = this.findOne({
-        where: {
-          id: user_id
+  async findUserData(user_id: string): Promise<User> {
+    return new Promise((resolve, reject) => {
+      const user = this.findOne(user_id);
+      user.then(resp => {
+        if (resp) {
+          resolve(user);
+        } else {
+          reject(new HttpException('User not found', HttpStatus.NOT_FOUND));
         }
       });
-      resolve(user);
     });
   }
 
-  async updateUserData(user_id: number, updateUserDto: UpdateUserDto): Promise<User> {
+  async updateUserData(user_id: string, updateUserDto: UpdateUserDto): Promise<User> {
     return new Promise(resolve => {
       this.update(user_id, updateUserDto).then(
         resp => {
