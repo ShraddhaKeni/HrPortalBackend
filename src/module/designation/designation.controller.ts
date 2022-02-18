@@ -27,8 +27,4 @@ export class DesignationController {
     return this.designationService.update(+id, updateDesignationDto);
   }
 
-  // @Delete(':id')
-  // remove(@Param('id') id: string) {
-  //   return this.designationService.remove(+id);
-  // }
 }
