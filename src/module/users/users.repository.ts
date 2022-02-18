@@ -1,4 +1,4 @@
-import {ConflictException,InternalServerErrorException} from '@nestjs/common';
+import {ConflictException,HttpException,HttpStatus,InternalServerErrorException} from '@nestjs/common';
 import { EntityRepository, Repository } from 'typeorm';
 import { AuthCredentialsDto } from '../../auth/dto/auth-credentials.dto';
 import * as bcrypt from 'bcrypt';
@@ -35,18 +35,17 @@ import { UpdateUserDto } from './dto/update-user.dto';
         });
       }
 
-      async findUserData(user_id: number): Promise<User> {
+      async findUserData(user_id: string): Promise<User> {
         return new Promise(resolve => {
-          const user = this.findOne({
-            where: {
-              id: user_id
-            }
-          });
-          resolve(user);
+          const user = this.findOne(user_id);
+          if(user) {
+            resolve(user);
+          }
+          throw new HttpException('User not found', HttpStatus.NOT_FOUND);
         });
       }
 
-      async updateUserData(user_id: number, updateUserDto: UpdateUserDto): Promise<User> {
+      async updateUserData(user_id: string, updateUserDto: UpdateUserDto): Promise<User> {
         return new Promise(resolve => {
             this.update(user_id,updateUserDto).then(
               resp => {
