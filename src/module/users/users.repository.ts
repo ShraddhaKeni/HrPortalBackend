@@ -4,6 +4,7 @@ import { AuthCredentialsDto } from '../../auth/dto/auth-credentials.dto';
 import * as bcrypt from 'bcrypt';
 import { User } from './entities/user.entity';
 import { UpdateUserDto } from './dto/update-user.dto';
+import { isEmpty, isNotEmptyObject } from 'class-validator';
   
   @EntityRepository(User)
   export class UsersRepository extends Repository<User> {
@@ -36,12 +37,15 @@ import { UpdateUserDto } from './dto/update-user.dto';
       }
 
       async findUserData(user_id: string): Promise<User> {
-        return new Promise(resolve => {
+        return new Promise((resolve, reject) => {
           const user = this.findOne(user_id);
-          if(user) {
-            resolve(user);
-          }
-          throw new HttpException('User not found', HttpStatus.NOT_FOUND);
+          user.then(resp => {
+            if (resp) {
+              resolve(user);
+            } else {
+              reject(new HttpException('User not found', HttpStatus.NOT_FOUND));
+            }
+          });
         });
       }
 
