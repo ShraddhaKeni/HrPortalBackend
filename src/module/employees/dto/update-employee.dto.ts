@@ -5,49 +5,49 @@ export class UpdateEmployeeDto {
     name: string;
 
     @IsInt()
-    desig_id: number;
+    desig_id?: number;
 
     @IsInt()
-    dept_id: number;
+    dept_id?: number;
 
     @IsEmail()
-    official_email: string;
+    official_email?: string;
 
     @IsString()
     @MinLength(10)
     @MaxLength(10)
-    contact_no: string;
+    contact_no?: string;
 
     @IsEmail()
-    personal_email: string;
+    personal_email?: string;
 
     @IsBoolean()
     status: boolean
 
     @IsDate()
-    dob: string
+    dob?: string
 
     @IsDate()
-    doj: string
+    doj?: string
 
     @IsString()
-    profile_pic: string
+    profile_pic?: string
     
     @IsString()
-    signature: string
+    signature?: string
 
     @IsString()
     @MinLength(10)
     @MaxLength(10)
-    emergency_no1: string;
+    emergency_no1?: string;
 
     @IsString()
     @MinLength(10)
     @MaxLength(10)
-    emergency_no2: string;
+    emergency_no2?: string;
 
     @IsString()
     @MinLength(10)
     @MaxLength(10)
-    emp_code: string;
+    emp_code?: string;
 }
