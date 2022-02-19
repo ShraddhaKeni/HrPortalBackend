@@ -1,3 +1,4 @@
+import { Company } from "src/module/companies/entities/company.entity";
 import { Designation } from "src/module/designation/entities/designation.entity";
 import { Column, Entity, JoinColumn, OneToOne, PrimaryGeneratedColumn } from "typeorm";
 
@@ -8,6 +9,10 @@ export class Employee {
 
     @Column()
     name: string;
+
+    @OneToOne(() => Company, (comp: Company) => comp.id)
+    @JoinColumn({name: 'comp_id'})
+    comp_id: string;
 
     @OneToOne(() => Designation, (desig: Designation) => desig.id)
     @JoinColumn({name: 'desig_id'})

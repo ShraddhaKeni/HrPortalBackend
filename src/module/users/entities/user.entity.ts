@@ -6,7 +6,7 @@ export class User {
   @PrimaryGeneratedColumn('uuid')
   id: string;
 
-  @OneToOne(() => Employee, (empl: Employee) => empl.id)
+  @OneToOne(() => Employee, (empl: Employee) => empl.id, { nullable: true })
   @JoinColumn({name: 'emp_id'})
   emp_id: string;
 
