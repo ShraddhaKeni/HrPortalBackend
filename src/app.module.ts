@@ -7,6 +7,7 @@ import { DesignationModule } from './module/designation/designation.module';
 import { EmployeesModule } from './module/employees/employees.module';
 import { ReportingToModule } from './module/reporting-to/reporting-to.module';
 import { SalaryModule } from './module/salary/salary.module';
+import { DocumentTypeModule } from './module/document-type/document-type.module';
 import { CompaniesModule } from './module/companies/companies.module';
 import { CountriesModule } from './module/countries/countries.module';
 import { StatesModule } from './module/states/states.module';
@@ -25,7 +26,8 @@ import { CitiesModule } from './module/cities/cities.module';
     EmployeesModule,
     ReportingToModule,
     SalaryModule,
-    CompaniesModule
+    DocumentTypeModule,
+    CompaniesModule,
   ],
 })
 export class AppModule { }
