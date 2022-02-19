@@ -1,5 +1,4 @@
-import { ConflictException, HttpException, HttpStatus, InternalServerErrorException, NotFoundException } from "@nestjs/common";
-import { isNotEmpty, isNotEmptyObject } from "class-validator";
+import { ConflictException, HttpException, HttpStatus, InternalServerErrorException } from "@nestjs/common";
 import { EntityRepository, Repository } from "typeorm";
 import { CreateDesignationDto } from "./dto/create-designation.dto";
 import { UpdateDesignationDto } from "./dto/update-designation.dto";
