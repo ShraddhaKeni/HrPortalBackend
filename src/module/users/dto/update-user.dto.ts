@@ -1,10 +1,6 @@
-import { IsString, MinLength, MaxLength, Matches } from 'class-validator';
+import { IsString, MinLength, MaxLength, Matches, IsBoolean } from 'class-validator';
 
 export class UpdateUserDto {
-    @IsString()
-    @MinLength(4)
-    @MaxLength(20)
-    username: string;
 
     @IsString()
     @MinLength(8)
@@ -12,8 +8,11 @@ export class UpdateUserDto {
     @Matches(/((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$/, {
         message: 'password is too weak',
     })
-    password: string;
+    password?: string;
 
     @IsString()
-    token: string;
+    token?: string;
+
+    @IsBoolean()
+    status: boolean
 }

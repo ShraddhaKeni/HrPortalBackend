@@ -9,6 +9,9 @@ export class CreateEmployeeDto {
     desig_id: number;
 
     @IsInt()
+    role_id: number;
+    
+    @IsInt()
     dept_id: number;
 
     @IsEmail()
@@ -25,9 +28,11 @@ export class CreateEmployeeDto {
     @IsBoolean()
     status: boolean
 
+    @Type(() => Date)
     @IsDate()
     dob: string
 
+    @Type(() => Date)
     @IsDate()
     doj: string
 
