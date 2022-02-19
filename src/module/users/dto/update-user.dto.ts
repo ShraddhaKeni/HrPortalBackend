@@ -14,5 +14,8 @@ export class UpdateUserDto {
     token?: string;
 
     @IsBoolean()
-    status: boolean
+    status: boolean;
+
+    @IsString()
+    emp_id?: string;
 }
