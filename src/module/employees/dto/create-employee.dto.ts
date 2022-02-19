@@ -4,6 +4,9 @@ import { IsBoolean, IsDate, IsEmail, IsInt, IsString, MaxLength, MinLength } fro
 export class CreateEmployeeDto {
     @IsString()
     name: string;
+    
+    @IsString()
+    comp_id: string;
 
     @IsInt()
     desig_id: number;
