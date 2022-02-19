@@ -1,3 +1,4 @@
+import { Type } from "class-transformer";
 import { IsBoolean, IsDate, IsEmail, IsInt, IsString, MaxLength, MinLength } from "class-validator";
 
 export class CreateEmployeeDto {
@@ -7,6 +8,9 @@ export class CreateEmployeeDto {
     @IsInt()
     desig_id: number;
 
+    @IsInt()
+    role_id: number;
+    
     @IsInt()
     dept_id: number;
 
@@ -24,9 +28,11 @@ export class CreateEmployeeDto {
     @IsBoolean()
     status: boolean
 
+    @Type(() => Date)
     @IsDate()
     dob: string
 
+    @Type(() => Date)
     @IsDate()
     doj: string
 

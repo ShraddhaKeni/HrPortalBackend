@@ -1,4 +1,5 @@
-import { Column, Entity, PrimaryGeneratedColumn } from "typeorm";
+import { Designation } from "src/module/designation/entities/designation.entity";
+import { Column, Entity, JoinColumn, OneToOne, PrimaryGeneratedColumn } from "typeorm";
 
 @Entity('Employees')
 export class Employee {
@@ -8,8 +9,12 @@ export class Employee {
     @Column()
     name: string;
 
-    @Column()
+    @OneToOne(() => Designation, (desig: Designation) => desig.id)
+    @JoinColumn({name: 'desig_id'})
     desig_id: number;
+
+    @Column()
+    role_id: number;
 
     @Column()
     dept_id: number;
@@ -38,13 +43,13 @@ export class Employee {
     @Column()
     profile_pic: string
 
-    @Column()
+    @Column({ nullable: true })
     signature: string
 
-    @Column({ length: 10 })
+    @Column({ length: 10, nullable: true })
     emergency_no1: string;
     
-    @Column({ length: 10 })
+    @Column({ length: 10, nullable: true })
     emergency_no2: string;
 
     @Column({ length: 10 })
