@@ -1,3 +1,4 @@
+import { Type } from "class-transformer";
 import { IsBoolean, IsDate, IsEmail, IsInt, IsString, MaxLength, MinLength } from "class-validator";
 
 export class CreateEmployeeDto {

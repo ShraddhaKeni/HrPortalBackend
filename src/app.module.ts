@@ -6,6 +6,7 @@ import { UsersModule } from './module/users/users.module';
 import { DesignationModule } from './module/designation/designation.module';
 import { EmployeesModule } from './module/employees/employees.module';
 import { ReportingToModule } from './module/reporting-to/reporting-to.module';
+import { SalaryModule } from './module/salary/salary.module';
 
 @Module({
   imports: [
@@ -16,6 +17,7 @@ import { ReportingToModule } from './module/reporting-to/reporting-to.module';
     DesignationModule,
     EmployeesModule,
     ReportingToModule,
+    SalaryModule
   ],
 })
 export class AppModule { }
