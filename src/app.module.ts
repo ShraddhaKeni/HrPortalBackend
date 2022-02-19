@@ -7,6 +7,7 @@ import { DesignationModule } from './module/designation/designation.module';
 import { EmployeesModule } from './module/employees/employees.module';
 import { ReportingToModule } from './module/reporting-to/reporting-to.module';
 import { SalaryModule } from './module/salary/salary.module';
+import { DocumentTypeModule } from './module/document-type/document-type.module';
 
 @Module({
   imports: [
@@ -17,7 +18,8 @@ import { SalaryModule } from './module/salary/salary.module';
     DesignationModule,
     EmployeesModule,
     ReportingToModule,
-    SalaryModule
+    SalaryModule,
+    DocumentTypeModule
   ],
 })
 export class AppModule { }
