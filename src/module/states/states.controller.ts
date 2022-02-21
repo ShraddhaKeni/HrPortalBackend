@@ -7,7 +7,7 @@ import { UpdateStateDto } from './dto/update-state.dto';
 export class StatesController {
   constructor(private readonly statesService: StatesService) {}
 
-  @Post()
+  @Post('create')
   create(@Body() createStateDto: CreateStateDto) {
     return this.statesService.create(createStateDto);
   }
