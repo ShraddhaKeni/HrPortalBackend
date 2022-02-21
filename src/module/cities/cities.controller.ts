@@ -7,7 +7,7 @@ import { UpdateCityDto } from './dto/update-city.dto';
 export class CitiesController {
   constructor(private readonly citiesService: CitiesService) {}
 
-  @Post()
+  @Post('create')
   create(@Body() createCityDto: CreateCityDto) {
     return this.citiesService.create(createCityDto);
   }
@@ -27,8 +27,8 @@ export class CitiesController {
     return this.citiesService.update(+id, updateCityDto);
   }
 
-  @Delete(':id')
+  /* @Delete(':id')
   remove(@Param('id') id: string) {
     return this.citiesService.remove(+id);
-  }
+  } */
 }
