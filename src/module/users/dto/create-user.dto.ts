@@ -1,4 +1,5 @@
-import { IsString, Matches, MaxLength, MinLength } from "class-validator";
+import { Type } from "class-transformer";
+import { IsDate, IsEmail, IsInt, IsString, Matches, MaxLength, MinLength } from "class-validator";
 
 export class CreateUserDto {
     @IsString()
@@ -14,6 +15,21 @@ export class CreateUserDto {
     })
     password: string;
 
+    @IsInt()
+    role_id: number;
+
     @IsString()
-    emp_id?: string;
+    @MinLength(10)
+    @MaxLength(10)
+    contact_no: string;
+
+    @IsEmail()
+    email: string;
+
+    @Type(() => Date)
+    @IsDate()
+    dob: string;
+
+    @IsString()
+    profile_pic?: string;
 }

@@ -23,7 +23,7 @@ export class User {
   @Column({ unique: true })
   email: string;
 
-  @Column()
+  @Column({ nullable: true })
   profile_pic: string;
 
   @Column({ length: 10, nullable: true })
@@ -39,7 +39,7 @@ export class User {
     enum: [true,false],
     default: true
   })
-  status: boolean
+  status: boolean;
 
   @CreateDateColumn()
   createdAt: Date;
