@@ -1,4 +1,9 @@
-import { PartialType } from '@nestjs/mapped-types';
-import { CreateDocumentTypeDto } from './create-document-type.dto';
+import { IsBoolean, IsString } from "class-validator";
 
-export class UpdateDocumentTypeDto extends PartialType(CreateDocumentTypeDto) {}
+export class UpdateDocumentTypeDto {
+    @IsString()
+    name: string;
+
+    @IsBoolean()
+    status: boolean;
+}
