@@ -1,20 +1,36 @@
-import { Employee } from 'src/module/employees/entities/employee.entity';
-import { Column, Entity, PrimaryGeneratedColumn, CreateDateColumn, UpdateDateColumn, JoinColumn, OneToOne } from 'typeorm';
+import { Column, Entity, PrimaryGeneratedColumn, CreateDateColumn, UpdateDateColumn } from 'typeorm';
 
 @Entity('Users')
 export class User {
   @PrimaryGeneratedColumn('uuid')
   id: string;
 
-  @OneToOne(() => Employee, (empl: Employee) => empl.id, { nullable: true })
-  @JoinColumn({name: 'emp_id'})
-  emp_id: string;
-
   @Column({ unique: true })
   username: string;
 
   @Column()
   password: string;
+
+  @Column()
+  role_id: number;
+
+  @Column()
+  dob: string;
+
+  @Column({ unique: true, length: 10 })
+  contact_no: string;
+
+  @Column({ unique: true })
+  email: string;
+
+  @Column()
+  profile_pic: string;
+
+  @Column({ length: 10, nullable: true })
+  emergency_no1: string;
+  
+  @Column({ length: 10, nullable: true })
+  emergency_no2: string;
 
   @Column()
   token: string;

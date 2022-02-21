@@ -4,7 +4,7 @@ import { State } from "src/module/states/entities/state.entity";
 import { Column, Entity, JoinColumn, OneToOne, PrimaryGeneratedColumn } from "typeorm";
 
 @Entity('Companies')
-export class Company {
+export class Companies {
     @PrimaryGeneratedColumn('uuid')
     id: string;
 

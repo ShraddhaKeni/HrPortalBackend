@@ -16,6 +16,7 @@ import { CitiesModule } from './module/cities/cities.module';
 @Module({
   imports: [
     ConfigModule.forRoot({ isGlobal: true }),
+    CompaniesModule,
     AuthModule,
     CountriesModule,
     StatesModule,
@@ -23,11 +24,10 @@ import { CitiesModule } from './module/cities/cities.module';
     UsersModule,
     DatabaseModule,
     DesignationModule,
-    EmployeesModule,
     ReportingToModule,
     SalaryModule,
     DocumentTypeModule,
-    CompaniesModule,
+    EmployeesModule
   ],
 })
 export class AppModule { }
