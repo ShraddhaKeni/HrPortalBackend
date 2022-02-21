@@ -7,7 +7,7 @@ import { UpdateCountryDto } from './dto/update-country.dto';
 export class CountriesController {
   constructor(private readonly countriesService: CountriesService) {}
 
-  @Post()
+  @Post('create')
   create(@Body() createCountryDto: CreateCountryDto) {
     return this.countriesService.create(createCountryDto);
   }
@@ -27,8 +27,8 @@ export class CountriesController {
     return this.countriesService.update(+id, updateCountryDto);
   }
 
-  @Delete(':id')
+  /* @Delete(':id')
   remove(@Param('id') id: string) {
     return this.countriesService.remove(+id);
-  }
+  } */
 }

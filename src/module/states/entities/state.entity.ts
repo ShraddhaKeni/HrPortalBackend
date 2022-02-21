@@ -1,12 +1,12 @@
 import { Country } from "src/module/countries/entities/country.entity";
-import { Column, Entity, JoinColumn, OneToOne, PrimaryGeneratedColumn } from "typeorm";
+import { Column, Entity, JoinColumn, ManyToOne, OneToOne, PrimaryGeneratedColumn } from "typeorm";
 
 @Entity('States')
 export class State {
     @PrimaryGeneratedColumn()
-    id: string;
+    id: number;
 
-    @OneToOne(() => Country, (country: Country) => country.id)
+    @ManyToOne(() => Country, (country: Country) => country.id)
     @JoinColumn({name: 'country_id'})
     country_id: number;
 

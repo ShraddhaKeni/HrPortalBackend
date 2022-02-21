@@ -1,26 +1,29 @@
 import { Injectable } from '@nestjs/common';
+import { CitiesRepository } from './cities.repository';
 import { CreateCityDto } from './dto/create-city.dto';
 import { UpdateCityDto } from './dto/update-city.dto';
 
 @Injectable()
 export class CitiesService {
+  constructor(private readonly citiesRepository: CitiesRepository) { }
+
   create(createCityDto: CreateCityDto) {
-    return 'This action adds a new city';
+    return this.citiesRepository.addCity(createCityDto);
   }
 
   findAll() {
-    return `This action returns all cities`;
+    return this.citiesRepository.getAllCities();
   }
 
   findOne(id: number) {
-    return `This action returns a #${id} city`;
+    return this.citiesRepository.getCityData(id);
   }
 
   update(id: number, updateCityDto: UpdateCityDto) {
-    return `This action updates a #${id} city`;
+    return this.citiesRepository.updateCity(id,updateCityDto);
   }
 
-  remove(id: number) {
+  /* remove(id: number) {
     return `This action removes a #${id} city`;
-  }
+  } */
 }

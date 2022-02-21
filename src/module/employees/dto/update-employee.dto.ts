@@ -15,11 +15,11 @@ export class UpdateEmployeeDto {
     email?: string;
 
     @IsBoolean()
-    status: boolean
+    status: boolean;
 
     @Type(() => Date)
     @IsDate()
-    doj?: string
+    doj?: string;
     
     @IsString()
     signature?: string;

@@ -1,4 +1,12 @@
-import { PartialType } from '@nestjs/mapped-types';
-import { CreateCityDto } from './create-city.dto';
+import { IsBoolean, IsInt, IsString } from "class-validator";
 
-export class UpdateCityDto extends PartialType(CreateCityDto) {}
+export class UpdateCityDto {
+    @IsString()
+    name?: string;
+
+    @IsInt()
+    state_id?: number;
+
+    @IsBoolean()
+    status: boolean;
+}
