@@ -31,19 +31,20 @@ import { TypeOrmModule } from '@nestjs/typeorm';
             imports: [ConfigModule],
             inject: [ConfigService],
             useFactory: async (configService: ConfigService) => {
-                const isProduction = process.env.NODE_ENV.trim() === 'prod';
-        
+                console.log(process.env.NODE_ENV)
+                const isProduction = process.env.NODE_ENV === 'prod';
+
                 return {
                     ssl: isProduction,
                     extra: {
-                    ssl: isProduction ? { rejectUnauthorized: false } : null,
+                        ssl: isProduction ? { rejectUnauthorized: false } : null,
                     },
                     type: 'postgres',
                     host: process.env.DB_HOST,
                     port: 5432,
-                    username: process.env.DB_USER,
-                    password: process.env.DB_PASS,
-                    database: process.env.DB_NAME,
+                    username: process.env.DB_USERNAME,
+                    password: process.env.DB_PASSWORD,
+                    database: process.env.DB_DATABASE,
                     autoLoadEntities: true,
                     logging: true,
                     synchronize: true
@@ -52,4 +53,4 @@ import { TypeOrmModule } from '@nestjs/typeorm';
         })
     ]
 })
-export class DatabaseModule {}
+export class DatabaseModule { }

@@ -17,11 +17,11 @@ export class UsersService {
     return this.userRepository.findAllUsers();
   }
 
-  findOne(id: number) {
+  findOne(id: string) {
     return this.userRepository.findUserData(id);
   }
 
-  update(id: number, updateUserDto: UpdateUserDto) {
+  update(id: string, updateUserDto: UpdateUserDto) {
     return this.userRepository.updateUserData(id,updateUserDto);
   }
 }
