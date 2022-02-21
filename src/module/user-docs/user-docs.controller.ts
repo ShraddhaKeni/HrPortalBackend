@@ -1,34 +1,50 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
+import { Controller, Get, Post, Body, Patch, Param, Delete, HttpCode, HttpStatus } from '@nestjs/common';
 import { UserDocsService } from './user-docs.service';
 import { CreateUserDocDto } from './dto/create-user-doc.dto';
 import { UpdateUserDocDto } from './dto/update-user-doc.dto';
 
 @Controller('user-docs')
 export class UserDocsController {
-  constructor(private readonly userDocsService: UserDocsService) {}
+  constructor(private readonly userDocsService: UserDocsService) { }
 
-  @Post()
-  create(@Body() createUserDocDto: CreateUserDocDto) {
-    return this.userDocsService.create(createUserDocDto);
+  @Post('create')
+  async create(@Body() createUserDocDto: CreateUserDocDto) {
+    const data = await this.userDocsService.create(createUserDocDto);
+    return {
+      "statusCode": HttpStatus.CREATED,
+      "message": "success",
+      "data": [data]
+    }
   }
 
-  @Get()
-  findAll() {
-    return this.userDocsService.findAll();
+  @Get('findAll')
+  async findAll() {
+    const data = await this.userDocsService.findAll();
+    return {
+      "statusCode": HttpStatus.OK,
+      "message": "success",
+      "data": [data]
+    }
   }
 
-  @Get(':id')
-  findOne(@Param('id') id: string) {
-    return this.userDocsService.findOne(+id);
+  @Get('find/:id')
+  async findOne(@Param('id') id: string) {
+    const data = await this.userDocsService.findOne(+id);
+    return {
+      "statusCode": HttpStatus.OK,
+      "message": "success",
+      "data": [data]
+    }
   }
 
-  @Patch(':id')
-  update(@Param('id') id: string, @Body() updateUserDocDto: UpdateUserDocDto) {
-    return this.userDocsService.update(+id, updateUserDocDto);
+  @Patch('update/:id')
+  async update(@Param('id') id: string, @Body() updateUserDocDto: UpdateUserDocDto) {
+    const data = await this.userDocsService.update(+id, updateUserDocDto);
+    return {
+      "statusCode": HttpStatus.OK,
+      "message": "success",
+      "data": [data]
+    }
   }
 
-  @Delete(':id')
-  remove(@Param('id') id: string) {
-    return this.userDocsService.remove(+id);
-  }
 }
