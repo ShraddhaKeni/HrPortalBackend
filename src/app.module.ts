@@ -3,6 +3,8 @@ import { AuthModule } from './auth/auth.module';
 import { ConfigModule } from '@nestjs/config';
 import { DatabaseModule } from './database/database.module';
 import { UsersModule } from './module/users/users.module';
+import { DepartmentsModule } from './module/departments/departments.module';
+import { RolesModule } from './module/roles/roles.module';
 import { DesignationModule } from './module/designation/designation.module';
 import { EmployeesModule } from './module/employees/employees.module';
 import { ReportingToModule } from './module/reporting-to/reporting-to.module';
@@ -23,6 +25,8 @@ import { CitiesModule } from './module/cities/cities.module';
     CitiesModule,
     UsersModule,
     DatabaseModule,
+    DepartmentsModule,
+    RolesModule,
     DesignationModule,
     ReportingToModule,
     SalaryModule,
