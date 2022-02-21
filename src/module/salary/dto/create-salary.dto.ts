@@ -1,6 +1,4 @@
-import { IsDecimal, IsNotEmpty, IsNumber, IsString, Min } from "class-validator";
-import { isFloat64Array } from "util/types";
-
+import { IsNotEmpty, IsString, Min } from "class-validator";
 
 export class CreateSalaryDto {
     @IsString()
