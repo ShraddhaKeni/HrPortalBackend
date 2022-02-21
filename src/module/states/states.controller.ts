@@ -27,8 +27,8 @@ export class StatesController {
     return this.statesService.update(+id, updateStateDto);
   }
 
-  @Delete(':id')
+  /* @Delete(':id')
   remove(@Param('id') id: string) {
     return this.statesService.remove(+id);
-  }
+  } */
 }

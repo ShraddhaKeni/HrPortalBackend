@@ -20,7 +20,7 @@ export class CitiesService {
     return `This action updates a #${id} city`;
   }
 
-  remove(id: number) {
+  /* remove(id: number) {
     return `This action removes a #${id} city`;
-  }
+  } */
 }
