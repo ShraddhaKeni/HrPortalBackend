@@ -23,4 +23,8 @@ export class UserDocsService {
     return this.userDocsRepository.updateUserDoc(id, updateUserDocDto)
   }
 
+  remove(id: number){
+    return this.userDocsRepository.deleteUserDoc(id)
+  }
+
 }

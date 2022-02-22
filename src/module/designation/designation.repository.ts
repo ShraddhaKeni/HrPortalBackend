@@ -50,18 +50,45 @@ export class DesignationRepository extends Repository<Designation>{
     async updateDesignation(design_id: number, updateDesignationDto: UpdateDesignationDto): Promise<Designation> {
         return new Promise((resolve, reject) => {
             this.update(design_id, updateDesignationDto).then(response => {
-                const designation = this.findOne({
-                    where: {
-                        id: design_id
-                    }
-                });
-                designation.then(response => {
-                    if (response) {
-                        resolve(designation)
-                    } else {
-                        reject(new HttpException('Designation not found', HttpStatus.NOT_FOUND))
-                    }
-                });
+                if(response){
+                    const designation = this.findOne({
+                        where: {
+                            id: design_id
+                        }
+                    });
+                    designation.then(response => {
+                        if (response) {
+                            resolve(designation)
+                        } else {
+                            reject(new HttpException('Designation not found', HttpStatus.NOT_FOUND))
+                        }
+                    });
+                }else{
+                    reject(new HttpException('Error updating designation', HttpStatus.BAD_REQUEST))
+                }
+            });
+        });
+    }
+
+    async deleteDesignation(id: number):Promise<Designation>{
+        return new Promise((resolve, reject) => {
+            this.update(id, {status: false}).then(response => {
+                if(response){
+                    const designation = this.findOne({
+                        where: {
+                            id: id
+                        }
+                    });
+                    designation.then(response => {
+                        if (response) {
+                            resolve(designation)
+                        } else {
+                            reject(new HttpException('Designation not found', HttpStatus.NOT_FOUND))
+                        }
+                    });
+                }else{
+                    reject(new HttpException('Error deleting designation', HttpStatus.BAD_REQUEST))
+                }
             });
         });
     }

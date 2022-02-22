@@ -53,7 +53,7 @@ export class JobsController {
     return {
       "statusCode": HttpStatus.OK,
       "message": "success",
-      "data": [data]
+      "data": "job deleted successfully"
     }
   }
 }
