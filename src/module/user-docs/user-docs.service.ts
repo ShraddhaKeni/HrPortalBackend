@@ -8,22 +8,19 @@ export class UserDocsService {
 
   constructor(private readonly userDocsRepository: UserDocsRepository) { }
   create(createUserDocDto: CreateUserDocDto) {
-    return `This action creates userDocs`;
+    return this.userDocsRepository.createUserDoc(createUserDocDto)
   }
 
   findAll() {
-    return `This action returns all userDocs`;
+    return this.userDocsRepository.findAllDocs()
   }
 
   findOne(id: number) {
-    return `This action returns a #${id} userDoc`;
+    return this.userDocsRepository.findUserDocs(id)
   }
 
   update(id: number, updateUserDocDto: UpdateUserDocDto) {
-    return `This action updates a #${id} userDoc`;
+    return this.userDocsRepository.updateUserDoc(id, updateUserDocDto)
   }
 
-  remove(id: number) {
-    return `This action removes a #${id} userDoc`;
-  }
 }
