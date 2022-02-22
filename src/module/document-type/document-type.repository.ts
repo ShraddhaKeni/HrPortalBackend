@@ -67,4 +67,29 @@ export class DocumentTypeRepository extends Repository<DocumentType>{
             });
         });
     }
+
+    async deleteDocumentType(id: number): Promise<DocumentType>{
+        return new Promise((resolve, reject)=>{
+            this.update(id, {status: false}).then(
+                response=>{
+                    if(response){
+                        const doc = this.findOne({
+                            where:{
+                                id: id
+                            }
+                        })
+                        doc.then(response => {
+                            if(response){
+                                resolve(doc)
+                            }else{
+                                reject(new HttpException("Document type not found", HttpStatus.NOT_FOUND))
+                            }
+                        })
+                    }else{
+                        reject(new HttpException("Error deleting document type", HttpStatus.BAD_REQUEST))
+                    }
+                }
+            )
+        })
+    }
 }

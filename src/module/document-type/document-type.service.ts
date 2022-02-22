@@ -23,6 +23,6 @@ export class DocumentTypeService {
   }
 
   remove(id: number) {
-    return `This action removes a #${id} documentType`;
+    return this.documentTypeRepository.deleteDocumentType(id)
   }
 }

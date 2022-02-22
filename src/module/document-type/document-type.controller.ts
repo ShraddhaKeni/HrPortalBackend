@@ -52,4 +52,14 @@ export class DocumentTypeController {
     return data_return
   }
 
+  @Delete('delete/:id')
+  async remove(@Param('id') id: number) {
+    const data = await this.documentTypeService.remove(+id);
+    return {
+      "statusCode": HttpStatus.OK,
+      "message": "success",
+      "data": [data]
+    }
+  }
+
 }
