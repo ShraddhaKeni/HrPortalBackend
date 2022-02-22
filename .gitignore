@@ -37,3 +37,4 @@ lerna-debug.log*
 .env.stage.*
 .env
 src/docs
+src/uploads/profile

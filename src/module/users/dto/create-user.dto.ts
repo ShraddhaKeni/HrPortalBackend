@@ -1,5 +1,5 @@
 import { Type } from "class-transformer";
-import { IsDate, IsEmail, IsInt, IsString, Matches, MaxLength, MinLength } from "class-validator";
+import { IsDate, IsEmail, IsInt, IsOptional, IsString, Matches, MaxLength, MinLength } from "class-validator";
 
 export class CreateUserDto {
     @IsString()
@@ -31,5 +31,6 @@ export class CreateUserDto {
     dob: string;
 
     @IsString()
+    @IsOptional()
     profile_pic?: string;
 }
