@@ -1,4 +1,4 @@
-import { IsBoolean, IsNumber, IsString } from "class-validator";
+import { IsBoolean, IsNumber, IsOptional, IsString } from "class-validator";
 
 export class CreateUserDocDto {
 
@@ -6,6 +6,7 @@ export class CreateUserDocDto {
     doc_type_id: number;
 
     @IsString()
+    @IsOptional()
     doc_path?: string;
 
     @IsString()

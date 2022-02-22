@@ -6,7 +6,7 @@ import { FileInterceptor } from '@nestjs/platform-express';
 import { diskStorage } from 'multer';
 import { docFileFilter, editFileName } from 'src/utils/file-upload.utils';
 import { FormDataRequest } from 'nestjs-form-data';
-import { CreateUserFormDataDto } from './dto/create-user-formdata.dto';
+import { CreateUserDocFormDataDto } from './dto/create-user-formdata.dto';
 
 @Controller('user-docs')
 export class UserDocsController {
@@ -22,7 +22,7 @@ export class UserDocsController {
       fileFilter: docFileFilter
     })
   )
-  async create(@Body() createUserDocDto: CreateUserFormDataDto, @UploadedFile() file: Express.Multer.File) {
+  async create(@Body() createUserDocDto: CreateUserDocFormDataDto, @UploadedFile() file: Express.Multer.File) {
     console.log(`User doc data: ${JSON.stringify(createUserDocDto)}`);
     let userDocData = new CreateUserDocDto();
     userDocData.doc_type_id = +createUserDocDto.doc_type_id
