@@ -26,7 +26,7 @@ export class UserDocsRepository extends Repository<UserDoc>{
                 }
             })
             docs.then(response => {
-                if(response){
+                if(response.length > 0){
                     resolve(docs)
                 }else{
                     reject(new HttpException("Error getting documents", HttpStatus.NOT_FOUND))
@@ -35,16 +35,16 @@ export class UserDocsRepository extends Repository<UserDoc>{
         })
     }
 
-    async findUserDocs(id: number): Promise<UserDoc[]>{
+    async findUserDocs(id: string): Promise<UserDoc[]>{
         return new Promise((resolve, reject)=>{
             const docs = this.find({
                 where:{
-                    id: id,
+                    user_id: id,
                     status: true
                 }
             })
-            docs.then(response => {
-                if(response){
+            docs.then(response => { 
+                if(response.length > 0){
                     resolve(docs)
                 }else{
                     reject(new HttpException("Error getting user documents", HttpStatus.NOT_FOUND))

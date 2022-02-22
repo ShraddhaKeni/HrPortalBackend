@@ -16,7 +16,6 @@ import { StatesModule } from './module/states/states.module';
 import { CitiesModule } from './module/cities/cities.module';
 import { UserDocsModule } from './module/user-docs/user-docs.module';
 import { MulterModule } from '@nestjs/platform-express';
-import { MemoryStoredFile, NestjsFormDataModule } from 'nestjs-form-data';
 import { JobsModule } from './module/jobs/jobs.module';
 
 @Module({
@@ -37,7 +36,7 @@ import { JobsModule } from './module/jobs/jobs.module';
     DocumentTypeModule,
     EmployeesModule,
     UserDocsModule,
-    MulterModule.register({ dest:'./src/docs' }),
+    MulterModule.register({ dest: './src/docs' }),
     JobsModule
   ],
 })
