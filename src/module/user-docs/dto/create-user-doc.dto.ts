@@ -6,7 +6,7 @@ export class CreateUserDocDto {
     doc_type_id: number;
 
     @IsString()
-    doc_path: string;
+    doc_path?: string;
 
     @IsString()
     user_id: string;

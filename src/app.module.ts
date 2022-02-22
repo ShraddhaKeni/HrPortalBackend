@@ -15,6 +15,7 @@ import { CountriesModule } from './module/countries/countries.module';
 import { StatesModule } from './module/states/states.module';
 import { CitiesModule } from './module/cities/cities.module';
 import { UserDocsModule } from './module/user-docs/user-docs.module';
+import { MulterModule } from '@nestjs/platform-express';
 
 @Module({
   imports: [
@@ -34,6 +35,7 @@ import { UserDocsModule } from './module/user-docs/user-docs.module';
     DocumentTypeModule,
     EmployeesModule,
     UserDocsModule,
+    MulterModule.register({ dest:'./docs' })
   ],
 })
 export class AppModule { }
