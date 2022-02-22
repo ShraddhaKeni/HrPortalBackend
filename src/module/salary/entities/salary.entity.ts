@@ -1,6 +1,5 @@
-import { type } from "os";
 import { Employee } from "src/module/employees/entities/employee.entity";
-import { Column, CreateDateColumn, Double, Entity, JoinColumn, ManyToOne, PrimaryGeneratedColumn, UpdateDateColumn } from "typeorm";
+import { Column, CreateDateColumn, Entity, JoinColumn, ManyToOne, PrimaryGeneratedColumn, UpdateDateColumn } from "typeorm";
 
 @Entity('Salary')
 export class Salary {

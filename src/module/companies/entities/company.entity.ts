@@ -1,7 +1,7 @@
 import { City } from "src/module/cities/entities/city.entity";
 import { Country } from "src/module/countries/entities/country.entity";
 import { State } from "src/module/states/entities/state.entity";
-import { Column, CreateDateColumn, Entity, JoinColumn, OneToOne, PrimaryGeneratedColumn, UpdateDateColumn } from "typeorm";
+import { Column, CreateDateColumn, Entity, JoinColumn, ManyToOne, OneToOne, PrimaryGeneratedColumn, UpdateDateColumn } from "typeorm";
 
 @Entity('Companies')
 export class Companies {
@@ -14,15 +14,15 @@ export class Companies {
     @Column({ type: "text"})
     address: string;
 
-    @OneToOne(() => Country, (country: Country) => country.id)
+    @ManyToOne(() => Country, (country: Country) => country.id)
     @JoinColumn({name: 'country_id'})
     country_id: number;
 
-    @OneToOne(() => State, (st: State) => st.id)
+    @ManyToOne(() => State, (st: State) => st.id)
     @JoinColumn({name: 'state_id'})
     state_id: number;
 
-    @OneToOne(() => City, (ct: City) => ct.id)
+    @ManyToOne(() => City, (ct: City) => ct.id)
     @JoinColumn({name: 'city_id'})
     city_id: number;
 

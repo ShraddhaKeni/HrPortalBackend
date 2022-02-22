@@ -10,19 +10,19 @@ export class DocumentTypeService {
     return this.documentTypeRepository.createDocumentType(createDocumentTypeDto)
   }
 
-  findAll() {
-    return `This action returns all documentType`;
+  async findAll() {
+    return this.documentTypeRepository.findAll()
   }
 
-  findOne(id: number) {
-    return `This action returns a #${id} documentType`;
+  async findOne(id: number) {
+    return this.documentTypeRepository.findDocumentType(id)
   }
 
-  update(id: number, updateDocumentTypeDto: UpdateDocumentTypeDto) {
-    return `This action updates a #${id} documentType`;
+  async update(id: number, updateDocumentTypeDto: UpdateDocumentTypeDto) {
+    return this.documentTypeRepository.updateDocumentType(id, updateDocumentTypeDto)
   }
 
   remove(id: number) {
-    return `This action removes a #${id} documentType`;
+    return this.documentTypeRepository.deleteDocumentType(id)
   }
 }

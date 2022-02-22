@@ -1,7 +1,4 @@
-import { HttpCode, HttpException, HttpStatus, InternalServerErrorException } from "@nestjs/common";
-import { rejects } from "assert";
-import { response } from "express";
-import { resolve } from "path/posix";
+import { HttpException, HttpStatus } from "@nestjs/common";
 import { EntityRepository, Repository } from "typeorm";
 import { CreateSalaryDto } from "./dto/create-salary.dto";
 import { Salary } from "./entities/salary.entity";

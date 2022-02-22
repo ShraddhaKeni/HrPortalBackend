@@ -10,33 +10,56 @@ export class DocumentTypeController {
 
   @Post('create')
   async create(@Body() createDocumentTypeDto: CreateDocumentTypeDto) {
-    const created_data = await this.documentTypeService.create(createDocumentTypeDto);
+    const data = await this.documentTypeService.create(createDocumentTypeDto);
     // const created_data = createDocumentTypeDto
-    var data = {
+    var data_return = {
       "statusCode": HttpStatus.CREATED,
       "message": "Data inserted successfully",
-      "data": [created_data]
+      "data": [data]
     }
-    return data
+    return data_return
   }
 
-  @Get()
-  findAll() {
-    return this.documentTypeService.findAll();
+  @Get('findAll')
+  async findAll() {
+    var data = await this.documentTypeService.findAll();
+    const data_return = {
+      "statusCode": HttpStatus.OK,
+      "message": "success",
+      "data": [data]
+    }
+    return data_return
   }
 
-  @Get(':id')
-  findOne(@Param('id') id: string) {
-    return this.documentTypeService.findOne(+id);
+  @Get('find/:id')
+  async findOne(@Param('id') id: string) {
+    var data = await this.documentTypeService.findOne(+id);
+    const data_return = {
+      "statusCode": HttpStatus.OK,
+      "message": "success",
+      "data": [data]
+    }
   }
 
-  @Patch(':id')
-  update(@Param('id') id: string, @Body() updateDocumentTypeDto: UpdateDocumentTypeDto) {
-    return this.documentTypeService.update(+id, updateDocumentTypeDto);
+  @Patch('update/:id')
+  async update(@Param('id') id: string, @Body() updateDocumentTypeDto: UpdateDocumentTypeDto) {
+    var data = await this.documentTypeService.update(+id, updateDocumentTypeDto);
+    const data_return = {
+      "statusCode": HttpStatus.OK,
+      "message": "success",
+      "data": [data]
+    }
+    return data_return
   }
 
-  @Delete(':id')
-  remove(@Param('id') id: string) {
-    return this.documentTypeService.remove(+id);
+  @Delete('delete/:id')
+  async remove(@Param('id') id: number) {
+    const data = await this.documentTypeService.remove(+id);
+    return {
+      "statusCode": HttpStatus.OK,
+      "message": "success",
+      "data": [data]
+    }
   }
+
 }

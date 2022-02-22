@@ -1,26 +1,29 @@
 import { Injectable } from '@nestjs/common';
 import { CreateStateDto } from './dto/create-state.dto';
 import { UpdateStateDto } from './dto/update-state.dto';
+import { StatesRepository } from './states.repository';
 
 @Injectable()
 export class StatesService {
+  constructor(private readonly statesRepository: StatesRepository) { }
+
   create(createStateDto: CreateStateDto) {
-    return 'This action adds a new state';
+    return this.statesRepository.addState(createStateDto);
   }
 
   findAll() {
-    return `This action returns all states`;
+    return this.statesRepository.getAllStates();
   }
 
   findOne(id: number) {
-    return `This action returns a #${id} state`;
+    return this.statesRepository.getStateData(id);
   }
 
   update(id: number, updateStateDto: UpdateStateDto) {
-    return `This action updates a #${id} state`;
+    return this.statesRepository.updateState(id,updateStateDto);
   }
 
-  remove(id: number) {
+  /* remove(id: number) {
     return `This action removes a #${id} state`;
-  }
+  } */
 }

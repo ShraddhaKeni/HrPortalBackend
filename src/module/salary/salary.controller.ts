@@ -1,4 +1,4 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
+import { Controller, Get, Post, Body, Param, HttpStatus } from '@nestjs/common';
 import { SalaryService } from './salary.service';
 import { CreateSalaryDto } from './dto/create-salary.dto';
 
@@ -7,23 +7,43 @@ export class SalaryController {
   constructor(private readonly salaryService: SalaryService) { }
 
   @Post('create')
-  create(@Body() createSalaryDto: CreateSalaryDto) {
-    return this.salaryService.create(createSalaryDto);
+  async create(@Body() createSalaryDto: CreateSalaryDto) {
+    const data = await this.salaryService.create(createSalaryDto);
+    return{
+      "statusCode":HttpStatus.CREATED,
+      "message": "success",
+      "data": [data]
+    }
   }
 
   @Post('update')
-  update(@Body() createSalaryDto: CreateSalaryDto) {
-    return this.salaryService.create(createSalaryDto);
+  async update(@Body() createSalaryDto: CreateSalaryDto) {
+    const data = await this.salaryService.create(createSalaryDto);
+    return{
+      "statusCode":HttpStatus.CREATED,
+      "message": "success",
+      "data": [data]
+    }
   }
 
-  @Get('all')
-  findAll() {
-    return this.salaryService.findAll();
+  @Get('findAll')
+  async findAll() {
+    const data = await this.salaryService.findAll();
+    return{
+      "statusCode":HttpStatus.CREATED,
+      "message": "success",
+      "data": [data]
+    }
   }
 
-  @Get(':id')
-  findOne(@Param('id') id: string) {
-    return this.salaryService.findOne(id);
+  @Get('find/:id')
+  async findOne(@Param('id') id: string) {
+    const data = await this.salaryService.findOne(id);
+    return{
+      "statusCode":HttpStatus.CREATED,
+      "message": "success",
+      "data": [data]
+    }
   }
 
 }

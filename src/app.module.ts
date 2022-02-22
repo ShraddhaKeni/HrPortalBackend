@@ -14,6 +14,8 @@ import { CompaniesModule } from './module/companies/companies.module';
 import { CountriesModule } from './module/countries/countries.module';
 import { StatesModule } from './module/states/states.module';
 import { CitiesModule } from './module/cities/cities.module';
+import { UserDocsModule } from './module/user-docs/user-docs.module';
+import { JobsModule } from './module/jobs/jobs.module';
 
 @Module({
   imports: [
@@ -31,7 +33,9 @@ import { CitiesModule } from './module/cities/cities.module';
     ReportingToModule,
     SalaryModule,
     DocumentTypeModule,
-    EmployeesModule
+    EmployeesModule,
+    UserDocsModule,
+    JobsModule,
   ],
 })
 export class AppModule { }

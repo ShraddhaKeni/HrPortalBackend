@@ -1,5 +1,4 @@
 import { HttpException, HttpStatus } from "@nestjs/common";
-import { isNotEmptyObject } from "class-validator";
 import { EntityRepository, Repository } from "typeorm";
 import { CreateEmployeeDto } from "./dto/create-employee.dto";
 import { UpdateEmployeeDto } from "./dto/update-employee.dto";
@@ -25,7 +24,11 @@ export class EmployeesRepository extends Repository<Employee> {
 
     async getAllEmployees(): Promise<Employee[]> {
         return new Promise(resolve => {
-            const emp = this.find();
+            const emp = this.find({
+                where: {
+                    status: true
+                }
+            });
             resolve(emp);
         });
     }
