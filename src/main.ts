@@ -4,6 +4,7 @@ import { AppModule } from './app.module';
 import { TransformInterceptor } from './transform.interceptor';
 import { Logger } from '@nestjs/common';
 import * as dotenv from 'dotenv';
+import * as bodyParser from 'body-parser';
 import { SwaggerModule, DocumentBuilder } from '@nestjs/swagger';
 
 async function bootstrap() {
@@ -21,6 +22,8 @@ async function bootstrap() {
   SwaggerModule.setup('api', app, document);
 
   app.enableCors();
+  app.use(bodyParser.json());
+  app.use(bodyParser.urlencoded({extended: true}));
   app.useGlobalPipes(new ValidationPipe());
   app.useGlobalInterceptors(new TransformInterceptor());
   const port = 3000;

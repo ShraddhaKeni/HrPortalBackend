@@ -34,7 +34,7 @@ export class User {
   @Column({ length: 10, nullable: true })
   emergency_no2: string;
 
-  @Column()
+  @Column({ nullable: true })
   token: string;
 
   @Column({

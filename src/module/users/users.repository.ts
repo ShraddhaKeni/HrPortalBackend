@@ -4,17 +4,19 @@ import { AuthCredentialsDto } from '../../auth/dto/auth-credentials.dto';
 import * as bcrypt from 'bcrypt';
 import { User } from './entities/user.entity';
 import { UpdateUserDto } from './dto/update-user.dto';
-import { isEmpty, isNotEmptyObject } from 'class-validator';
+import { CreateUserDto } from './dto/create-user.dto';
 
 @EntityRepository(User)
 export class UsersRepository extends Repository<User> {
-  async createUser(authCredentialsDto: AuthCredentialsDto, token?: string): Promise<User> {
-    const { username, password } = authCredentialsDto;
+  async createUser(createUserData: CreateUserDto, token?: string): Promise<User> {
+    // const { username, password } = authCredentialsDto;
 
     const salt = await bcrypt.genSalt();
-    const hashedPassword = await bcrypt.hash(password, salt);
+    const hashedPassword = await bcrypt.hash(createUserData.password, salt);
+    createUserData.password = hashedPassword
 
-    const user = this.create({ username, password: hashedPassword, token: token });
+    // const user = this.create({ username, password: hashedPassword, token: token });
+    const user = this.create(createUserData);
 
     try {
       await this.save(user);

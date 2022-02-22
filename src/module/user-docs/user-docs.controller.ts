@@ -5,6 +5,8 @@ import { UpdateUserDocDto } from './dto/update-user-doc.dto';
 import { FileInterceptor } from '@nestjs/platform-express';
 import { diskStorage } from 'multer';
 import { docFileFilter, editFileName } from 'src/utils/file-upload.utils';
+import { FormDataRequest } from 'nestjs-form-data';
+import { CreateUserFormDataDto } from './dto/create-user-formdata.dto';
 
 @Controller('user-docs')
 export class UserDocsController {
@@ -14,15 +16,20 @@ export class UserDocsController {
   @UseInterceptors(
     FileInterceptor('file', {
       storage: diskStorage({
-        destination: './docs',
+        destination: './src/docs',
         filename: editFileName
       }),
       fileFilter: docFileFilter
     })
   )
-  async create(@Body() createUserDocDto: CreateUserDocDto, @UploadedFile() file) {
-    createUserDocDto.doc_path = file.filename;
-    const data = await this.userDocsService.create(createUserDocDto);
+  async create(@Body() createUserDocDto: CreateUserFormDataDto, @UploadedFile() file: Express.Multer.File) {
+    console.log(`User doc data: ${JSON.stringify(createUserDocDto)}`);
+    let userDocData = new CreateUserDocDto();
+    userDocData.doc_type_id = +createUserDocDto.doc_type_id
+    userDocData.doc_path = file.filename;
+    userDocData.status = true;
+    userDocData.user_id = createUserDocDto.user_id
+    const data = await this.userDocsService.create(userDocData);
     return {
       "statusCode": HttpStatus.CREATED,
       "message": "success",
