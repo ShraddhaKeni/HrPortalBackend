@@ -1,11 +1,10 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete, HttpCode, HttpStatus, UseInterceptors, UploadedFile } from '@nestjs/common';
+import { Controller, Get, Post, Body, Patch, Param, Delete, HttpStatus, UseInterceptors, UploadedFile } from '@nestjs/common';
 import { UserDocsService } from './user-docs.service';
 import { CreateUserDocDto } from './dto/create-user-doc.dto';
 import { UpdateUserDocDto } from './dto/update-user-doc.dto';
 import { FileInterceptor } from '@nestjs/platform-express';
 import { diskStorage } from 'multer';
 import { docFileFilter, editFileName } from 'src/utils/file-upload.utils';
-import { FormDataRequest } from 'nestjs-form-data';
 import { CreateUserDocFormDataDto } from './dto/create-user-formdata.dto';
 
 @Controller('user-docs')
@@ -49,7 +48,7 @@ export class UserDocsController {
 
   @Get('find/:id')
   async findOne(@Param('id') id: string) {
-    const data = await this.userDocsService.findOne(+id);
+    const data = await this.userDocsService.findOne(id);
     return {
       "statusCode": HttpStatus.OK,
       "message": "success",

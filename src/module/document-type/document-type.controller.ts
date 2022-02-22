@@ -1,5 +1,4 @@
 import { Controller, Get, Post, Body, Patch, Param, Delete, HttpStatus } from '@nestjs/common';
-import { json } from 'stream/consumers';
 import { DocumentTypeService } from './document-type.service';
 import { CreateDocumentTypeDto } from './dto/create-document-type.dto';
 import { UpdateDocumentTypeDto } from './dto/update-document-type.dto';
@@ -10,31 +9,28 @@ export class DocumentTypeController {
 
   @Post('create')
   async create(@Body() createDocumentTypeDto: CreateDocumentTypeDto) {
-    const data = await this.documentTypeService.create(createDocumentTypeDto);
-    // const created_data = createDocumentTypeDto
-    var data_return = {
+    const data = await this.documentTypeService.create(createDocumentTypeDto)
+    return {
       "statusCode": HttpStatus.CREATED,
       "message": "Data inserted successfully",
       "data": [data]
     }
-    return data_return
   }
 
   @Get('findAll')
   async findAll() {
     var data = await this.documentTypeService.findAll();
-    const data_return = {
+    return {
       "statusCode": HttpStatus.OK,
       "message": "success",
       "data": [data]
     }
-    return data_return
   }
 
   @Get('find/:id')
   async findOne(@Param('id') id: string) {
     var data = await this.documentTypeService.findOne(+id);
-    const data_return = {
+    return {
       "statusCode": HttpStatus.OK,
       "message": "success",
       "data": [data]
@@ -44,12 +40,11 @@ export class DocumentTypeController {
   @Patch('update/:id')
   async update(@Param('id') id: string, @Body() updateDocumentTypeDto: UpdateDocumentTypeDto) {
     var data = await this.documentTypeService.update(+id, updateDocumentTypeDto);
-    const data_return = {
+    return {
       "statusCode": HttpStatus.OK,
       "message": "success",
       "data": [data]
     }
-    return data_return
   }
 
   @Delete('delete/:id')

@@ -15,7 +15,7 @@ export class UserDocsService {
     return this.userDocsRepository.findAllDocs()
   }
 
-  findOne(id: number) {
+  findOne(id: string) {
     return this.userDocsRepository.findUserDocs(id)
   }
 
