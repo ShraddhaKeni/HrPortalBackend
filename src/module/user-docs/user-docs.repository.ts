@@ -76,7 +76,30 @@ export class UserDocsRepository extends Repository<UserDoc>{
                 reject(new HttpException("Error while uploading document", HttpStatus.NOT_FOUND))
             }
         })
+    }
 
+    async deleteUserDoc(id:number):Promise<UserDoc>{
+        return new Promise((resolve, reject) => {
+            const doc = this.update(id, { status: false })
+            doc.then(response => {
+                if (response) {
+                    const findDoc = this.findOne({
+                        where: {
+                            id: id
+                        }
+                    })
+                    findDoc.then((response) => {
+                        if (response) {
+                            resolve(findDoc)
+                        } else {
+                            reject(new HttpException("User document not found", HttpStatus.NOT_FOUND))
+                        }
+                    })
+                } else {
+                    reject(new HttpException("Error deleting user document", HttpStatus.BAD_REQUEST))
+                }
+            })
+        })
     }
 
 }

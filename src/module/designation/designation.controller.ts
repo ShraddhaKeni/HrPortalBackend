@@ -10,8 +10,8 @@ export class DesignationController {
   @Post('create')
   async create(@Body() createDesignationDto: CreateDesignationDto) {
     const data = await this.designationService.create(createDesignationDto);
-    return{
-      "statusCode":HttpStatus.CREATED,
+    return {
+      "statusCode": HttpStatus.CREATED,
       "message": "success",
       "data": [data]
     }
@@ -20,8 +20,8 @@ export class DesignationController {
   @Get('findAll')
   async findAll() {
     const data = await this.designationService.findAll();
-    return{
-      "statusCode":HttpStatus.CREATED,
+    return {
+      "statusCode": HttpStatus.CREATED,
       "message": "success",
       "data": [data]
     }
@@ -30,20 +30,30 @@ export class DesignationController {
   @Get('find/:id')
   async findOne(@Param('id') id: number) {
     const data = await this.designationService.findOne(+id);
-    return{
-      "statusCode":HttpStatus.CREATED,
+    return {
+      "statusCode": HttpStatus.CREATED,
       "message": "success",
       "data": [data]
     }
   }
 
-  @Post('update/:id')
-  async update(@Param('id') id: string, @Body() updateDesignationDto: UpdateDesignationDto) {
+  @Patch('update/:id')
+  async update(@Param('id') id: number, @Body() updateDesignationDto: UpdateDesignationDto) {
     const data = await this.designationService.update(+id, updateDesignationDto);
-    return{
-      "statusCode":HttpStatus.CREATED,
+    return {
+      "statusCode": HttpStatus.CREATED,
       "message": "success",
       "data": [data]
+    }
+  }
+
+  @Delete('delete/:id')
+  async delete(@Param('id') id: number) {
+    const data = await this.designationService.remove(+id);
+    return {
+      "statusCode": HttpStatus.CREATED,
+      "message": "success",
+      "data": "designation deleted successfully"
     }
   }
 

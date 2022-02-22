@@ -67,4 +67,14 @@ export class UserDocsController {
     }
   }
 
+  @Delete('delete/:id')
+  async remove(@Param('id') id: number) {
+    const data = await this.userDocsService.remove(+id);
+    return {
+      "statusCode": HttpStatus.OK,
+      "message": "success",
+      "data": "user document deleted successfully"
+    }
+  }
+
 }
