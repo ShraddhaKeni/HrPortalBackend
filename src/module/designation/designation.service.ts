@@ -1,5 +1,4 @@
 import { Injectable } from '@nestjs/common';
-import { parse } from 'path/posix';
 import { DesignationRepository } from './designation.repository';
 import { CreateDesignationDto } from './dto/create-designation.dto';
 import { UpdateDesignationDto } from './dto/update-designation.dto';

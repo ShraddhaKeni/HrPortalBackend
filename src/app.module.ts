@@ -17,7 +17,16 @@ import { CitiesModule } from './module/cities/cities.module';
 import { UserDocsModule } from './module/user-docs/user-docs.module';
 import { MulterModule } from '@nestjs/platform-express';
 import { JobsModule } from './module/jobs/jobs.module';
+<<<<<<< HEAD
 import { LevelTypesModule } from './module/level-types/level-types.module';
+import { JobApplicantsModule } from './module/job-applicants/job-applicants.module';
+import { ApplicationTrackModule } from './module/application-track/application-track.module';
+import { AddressModule } from './module/address/address.module';
+=======
+import { JobApplicantsModule } from './module/job-applicants/job-applicants.module';
+import { ApplicationTrackModule } from './module/application-track/application-track.module';
+import { AddressModule } from './module/address/address.module';
+>>>>>>> 9c20ebffc69ac4ee9dc513636680de82c792f605
 
 @Module({
   imports: [
@@ -39,7 +48,10 @@ import { LevelTypesModule } from './module/level-types/level-types.module';
     UserDocsModule,
     MulterModule.register({ dest: './src/docs' }),
     JobsModule,
-    LevelTypesModule
+    LevelTypesModule,
+    JobApplicantsModule,
+    ApplicationTrackModule,
+    AddressModule
   ],
 })
 export class AppModule { }
