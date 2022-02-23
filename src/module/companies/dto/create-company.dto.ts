@@ -17,26 +17,19 @@ export class CreateCompanyDto {
 
     pincode: number
 
-    @IsString()
     website?: string
 
-    @IsString()
     email?: string;
 
-    @IsString()
     contact_person?: string;
 
-    @IsString()
     contact_number?: string;
 
-    @IsString()
     pancard_number?: string;
 
-    @IsString()
     gst_number?: string;
 
-    @IsString()
     cin_number?: string;
 
-    status: boolean;
+    status?: boolean;
 }
