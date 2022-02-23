@@ -1,6 +1,7 @@
 import { Employee } from "src/module/employees/entities/employee.entity";
 import { JobApplicant } from "src/module/job-applicants/entities/job-applicant.entity";
 import { Job } from "src/module/jobs/entities/job.entity";
+import { LevelType } from "src/module/level-types/entities/level-type.entity";
 import { Column, CreateDateColumn, Entity, JoinColumn, ManyToOne, PrimaryGeneratedColumn, UpdateDateColumn } from "typeorm";
 
 @Entity('ApplicationTrack')
@@ -24,8 +25,9 @@ export class ApplicationTrack {
     @JoinColumn({name: 'emp_id'})
     emp_id: string
 
-    @Column()
-    level: string
+    @ManyToOne(()=> LevelType, (level: LevelType) => level.id)
+    @JoinColumn({name: 'level'})
+    level: number
 
     @Column({
         enum:[true, false],

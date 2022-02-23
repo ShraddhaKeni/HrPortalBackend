@@ -14,7 +14,7 @@ export class CreateApplicationTrackDto {
     @IsString()
     emp_id: string
 
-    @IsString()
-    level: string
+    @IsNumber()
+    level: number
 
 }
