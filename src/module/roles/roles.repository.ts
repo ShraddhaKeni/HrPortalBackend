@@ -1,6 +1,4 @@
 import { ConflictException, HttpException, HttpStatus, InternalServerErrorException } from "@nestjs/common";
-import { rejects } from "assert";
-import { resolve } from "path/posix";
 import { EntityRepository, Repository } from "typeorm";
 import { CreateRoleDto } from "./dto/create-role.dto";
 import { UpdateRoleDto } from "./dto/update-role.dto";
