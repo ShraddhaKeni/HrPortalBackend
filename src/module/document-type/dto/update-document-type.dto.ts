@@ -1,9 +1,12 @@
-import { IsBoolean, IsString } from "class-validator";
+import { IsBoolean, IsOptional, IsString } from "class-validator";
 
 export class UpdateDocumentTypeDto {
-    @IsString()
-    name: string;
 
+    @IsOptional()
+    @IsString()
+    name?: string;
+
+    @IsOptional()
     @IsBoolean()
-    status: boolean;
+    status?: boolean;
 }

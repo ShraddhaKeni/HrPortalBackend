@@ -17,6 +17,8 @@ import { CitiesModule } from './module/cities/cities.module';
 import { UserDocsModule } from './module/user-docs/user-docs.module';
 import { MulterModule } from '@nestjs/platform-express';
 import { JobsModule } from './module/jobs/jobs.module';
+import { JobApplicantsModule } from './module/job-applicants/job-applicants.module';
+import { ApplicationTrackModule } from './module/application-track/application-track.module';
 
 @Module({
   imports: [
@@ -37,7 +39,9 @@ import { JobsModule } from './module/jobs/jobs.module';
     EmployeesModule,
     UserDocsModule,
     MulterModule.register({ dest: './src/docs' }),
-    JobsModule
+    JobsModule,
+    JobApplicantsModule,
+    ApplicationTrackModule
   ],
 })
 export class AppModule { }

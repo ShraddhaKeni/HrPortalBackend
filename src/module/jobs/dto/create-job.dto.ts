@@ -22,6 +22,6 @@ export class CreateJobDto {
     @IsNotEmpty()
     salary: string
 
-    @IsNumber()
+    @IsString()
     raised_by_emp: string
 }
