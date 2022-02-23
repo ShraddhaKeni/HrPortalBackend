@@ -1,7 +1,4 @@
 import { HttpException, HttpStatus } from "@nestjs/common";
-import { rejects } from "assert";
-import { response } from "express";
-import { resolve } from "path/posix";
 import { EntityRepository, Repository } from "typeorm";
 import { CreateDocumentTypeDto } from "./dto/create-document-type.dto";
 import { UpdateDocumentTypeDto } from "./dto/update-document-type.dto";

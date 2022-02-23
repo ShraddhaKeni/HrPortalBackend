@@ -6,19 +6,22 @@ import { Designation } from "./entities/designation.entity";
 
 @EntityRepository(Designation)
 export class DesignationRepository extends Repository<Designation>{
-    async createDesignation(desgnationDto: CreateDesignationDto) {
 
-        const designation = this.create(desgnationDto);
-        try {
-            await this.save(designation);
-            return designation;
-        } catch (error) {
-            if (error.code === '23505') {
-                throw new ConflictException("designation already exits");
-            } else {
-                throw new InternalServerErrorException();
+    async createDesignation(desgnationDto: CreateDesignationDto): Promise<Designation> {
+        return new Promise((resolve, reject) => {
+            const designation = this.create(desgnationDto);
+            try {
+                this.save(designation);
+                resolve(designation)
+            } catch (error) {
+                if (error.code === '23505') {
+                    reject(new ConflictException("designation already exits"))
+                } else {
+                    reject(new HttpException("Error creating designation", HttpStatus.BAD_REQUEST))
+                }
             }
-        }
+        })
+
     }
 
     async findAll(): Promise<Designation[]> {
@@ -50,7 +53,7 @@ export class DesignationRepository extends Repository<Designation>{
     async updateDesignation(design_id: number, updateDesignationDto: UpdateDesignationDto): Promise<Designation> {
         return new Promise((resolve, reject) => {
             this.update(design_id, updateDesignationDto).then(response => {
-                if(response){
+                if (response) {
                     const designation = this.findOne({
                         where: {
                             id: design_id
@@ -63,17 +66,17 @@ export class DesignationRepository extends Repository<Designation>{
                             reject(new HttpException('Designation not found', HttpStatus.NOT_FOUND))
                         }
                     });
-                }else{
+                } else {
                     reject(new HttpException('Error updating designation', HttpStatus.BAD_REQUEST))
                 }
             });
         });
     }
 
-    async deleteDesignation(id: number):Promise<Designation>{
+    async deleteDesignation(id: number): Promise<Designation> {
         return new Promise((resolve, reject) => {
-            this.update(id, {status: false}).then(response => {
-                if(response){
+            this.update(id, { status: false }).then(response => {
+                if (response) {
                     const designation = this.findOne({
                         where: {
                             id: id
@@ -86,7 +89,7 @@ export class DesignationRepository extends Repository<Designation>{
                             reject(new HttpException('Designation not found', HttpStatus.NOT_FOUND))
                         }
                     });
-                }else{
+                } else {
                     reject(new HttpException('Error deleting designation', HttpStatus.BAD_REQUEST))
                 }
             });
