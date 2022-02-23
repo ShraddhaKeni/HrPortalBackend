@@ -19,6 +19,7 @@ import { MulterModule } from '@nestjs/platform-express';
 import { JobsModule } from './module/jobs/jobs.module';
 import { JobApplicantsModule } from './module/job-applicants/job-applicants.module';
 import { ApplicationTrackModule } from './module/application-track/application-track.module';
+import { AddressModule } from './module/address/address.module';
 
 @Module({
   imports: [
@@ -41,7 +42,8 @@ import { ApplicationTrackModule } from './module/application-track/application-t
     MulterModule.register({ dest: './src/docs' }),
     JobsModule,
     JobApplicantsModule,
-    ApplicationTrackModule
+    ApplicationTrackModule,
+    AddressModule
   ],
 })
 export class AppModule { }
