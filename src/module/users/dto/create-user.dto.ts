@@ -33,4 +33,8 @@ export class CreateUserDto {
     @IsString()
     @IsOptional()
     profile_pic?: string;
+    
+    @IsString()
+    @IsOptional()
+    token?: string;
 }
