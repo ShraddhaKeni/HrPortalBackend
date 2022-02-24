@@ -16,6 +16,11 @@ export class StatesController {
   findAll() {
     return this.statesService.findAll();
   }
+  
+  @Get('list/:id')
+  findAllUsCountry(@Param('id') id: string) {
+    return this.statesService.findAllUsCountry(+id);
+  }
 
   @Get(':id')
   findOne(@Param('id') id: string) {

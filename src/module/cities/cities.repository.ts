@@ -64,4 +64,25 @@ export class CitiesRepository extends Repository<City> {
             });
         });
     }
+
+    async getCityUsingStateId(s_id: number): Promise<City[]> {
+        return new Promise((resolve, reject) => {
+            const cResp = this.find({
+                where: {
+                    state_id: s_id
+                },
+                select:['id','name'],
+                order:{
+                    id:'ASC'
+                }
+            });
+            cResp.then(resp => {
+              if (resp) {
+                resolve(cResp);
+              } else {
+                reject(new HttpException('No Data', HttpStatus.NOT_FOUND));
+              }
+            });
+        });
+    }
 }
