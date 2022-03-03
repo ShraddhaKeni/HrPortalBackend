@@ -12,7 +12,7 @@ export class SalaryController {
     return{
       "statusCode":HttpStatus.CREATED,
       "message": "success",
-      "data": [data]
+      "data": data
     }
   }
 
@@ -22,7 +22,7 @@ export class SalaryController {
     return{
       "statusCode":HttpStatus.CREATED,
       "message": "success",
-      "data": [data]
+      "data": data
     }
   }
 
@@ -32,7 +32,7 @@ export class SalaryController {
     return{
       "statusCode":HttpStatus.CREATED,
       "message": "success",
-      "data": [data]
+      "data": data
     }
   }
 
@@ -42,7 +42,7 @@ export class SalaryController {
     return{
       "statusCode":HttpStatus.CREATED,
       "message": "success",
-      "data": [data]
+      "data": data
     }
   }
 
