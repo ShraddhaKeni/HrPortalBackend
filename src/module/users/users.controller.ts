@@ -21,7 +21,7 @@ export class UsersController {
       fileFilter: imageFileFilter
     })
   )
-  create(@Body() createUserDto: CreateUserFormDataDto, @UploadedFile() file: Express.Multer.File) {
+  create(@Body() createUserDto: CreateUserFormDataDto, @UploadedFile() file?: Express.Multer.File) {
     let userData = new CreateUserDto();
     userData.username = createUserDto.username;
     userData.password = createUserDto.password;
@@ -29,7 +29,9 @@ export class UsersController {
     userData.contact_no = createUserDto.contact_no;
     userData.email = createUserDto.email;
     userData.dob = createUserDto.dob;
-    userData.profile_pic = file.filename;
+    if(file != null) {
+      userData.profile_pic = file.filename;
+    }
     return this.usersService.create(userData);
   }
 
