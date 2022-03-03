@@ -53,7 +53,7 @@ export class DocumentTypeController {
     return {
       "statusCode": HttpStatus.OK,
       "message": "success",
-      "data": data
+      "data": "Document-type deleted successfully"
     }
   }
 

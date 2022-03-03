@@ -21,7 +21,7 @@ export class DesignationController {
   async findAll() {
     const data = await this.designationService.findAll();
     return {
-      "statusCode": HttpStatus.CREATED,
+      "statusCode": HttpStatus.OK,
       "message": "success",
       "data": data
     }
@@ -31,7 +31,7 @@ export class DesignationController {
   async findOne(@Param('id') id: number) {
     const data = await this.designationService.findOne(+id);
     return {
-      "statusCode": HttpStatus.CREATED,
+      "statusCode": HttpStatus.OK,
       "message": "success",
       "data": data
     }
@@ -41,7 +41,7 @@ export class DesignationController {
   async update(@Param('id') id: number, @Body() updateDesignationDto: UpdateDesignationDto) {
     const data = await this.designationService.update(+id, updateDesignationDto);
     return {
-      "statusCode": HttpStatus.CREATED,
+      "statusCode": HttpStatus.OK,
       "message": "success",
       "data": data
     }
@@ -51,7 +51,7 @@ export class DesignationController {
   async delete(@Param('id') id: number) {
     const data = await this.designationService.remove(+id);
     return {
-      "statusCode": HttpStatus.CREATED,
+      "statusCode": HttpStatus.OK,
       "message": "success",
       "data": "designation deleted successfully"
     }

@@ -1,4 +1,4 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
+import { Controller, Get, Post, Body, Patch, Param, Delete, HttpStatus } from '@nestjs/common';
 import { CitiesService } from './cities.service';
 import { CreateCityDto } from './dto/create-city.dto';
 import { UpdateCityDto } from './dto/update-city.dto';
@@ -8,28 +8,53 @@ export class CitiesController {
   constructor(private readonly citiesService: CitiesService) {}
 
   @Post('create')
-  create(@Body() createCityDto: CreateCityDto) {
-    return this.citiesService.create(createCityDto);
+  async create(@Body() createCityDto: CreateCityDto) {
+    const data = await this.citiesService.create(createCityDto);
+    return{
+      "statusCode":HttpStatus.CREATED,
+      "message": "success",
+      "data": data
+    }
   }
 
   @Get()
-  findAll() {
-    return this.citiesService.findAll();
+  async findAll() {
+    const data = await this.citiesService.findAll();
+    return{
+      "statusCode":HttpStatus.OK,
+      "message": "success",
+      "data": data
+    }
   }
 
   @Get('list/:id')
-  findCitiesUsingState(@Param('id') id: string) {
-    return this.citiesService.findCityUsingStateId(+id);
+  async findCitiesUsingState(@Param('id') id: string) {
+    const data = await this.citiesService.findCityUsingStateId(+id);
+    return{
+      "statusCode":HttpStatus.OK,
+      "message": "success",
+      "data": data
+    }
   }
 
   @Get(':id')
-  findOne(@Param('id') id: string) {
-    return this.citiesService.findOne(+id);
+  async findOne(@Param('id') id: string) {
+    const data = await this.citiesService.findOne(+id);
+    return{
+      "statusCode":HttpStatus.OK,
+      "message": "success",
+      "data": data
+    }
   }
 
   @Patch(':id')
-  update(@Param('id') id: string, @Body() updateCityDto: UpdateCityDto) {
-    return this.citiesService.update(+id, updateCityDto);
+  async update(@Param('id') id: string, @Body() updateCityDto: UpdateCityDto) {
+    const data = await this.citiesService.update(+id, updateCityDto);
+    return{
+      "statusCode":HttpStatus.OK,
+      "message": "success",
+      "data": data
+    }
   }
 
   /* @Delete(':id')

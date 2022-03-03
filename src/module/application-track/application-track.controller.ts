@@ -41,7 +41,7 @@ export class ApplicationTrackController {
   async update(@Param('id') id: string, @Body() updateApplicationTrackDto: UpdateApplicationTrackDto) {
     const data = await this.applicationTrackService.update(+id, updateApplicationTrackDto);
     return {
-      "statusCode":HttpStatus.CREATED,
+      "statusCode":HttpStatus.OK,
       "message": "success",
       "data": data
     }

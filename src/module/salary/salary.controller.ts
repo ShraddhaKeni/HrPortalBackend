@@ -20,7 +20,7 @@ export class SalaryController {
   async update(@Body() createSalaryDto: CreateSalaryDto) {
     const data = await this.salaryService.create(createSalaryDto);
     return{
-      "statusCode":HttpStatus.CREATED,
+      "statusCode":HttpStatus.OK,
       "message": "success",
       "data": data
     }
@@ -30,7 +30,7 @@ export class SalaryController {
   async findAll() {
     const data = await this.salaryService.findAll();
     return{
-      "statusCode":HttpStatus.CREATED,
+      "statusCode":HttpStatus.OK,
       "message": "success",
       "data": data
     }
@@ -40,7 +40,7 @@ export class SalaryController {
   async findOne(@Param('id') id: string) {
     const data = await this.salaryService.findOne(id);
     return{
-      "statusCode":HttpStatus.CREATED,
+      "statusCode":HttpStatus.OK,
       "message": "success",
       "data": data
     }

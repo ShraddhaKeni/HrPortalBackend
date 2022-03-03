@@ -1,4 +1,4 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
+import { Controller, Get, Post, Body, Patch, Param, Delete, HttpStatus } from '@nestjs/common';
 import { CountriesService } from './countries.service';
 import { CreateCountryDto } from './dto/create-country.dto';
 import { UpdateCountryDto } from './dto/update-country.dto';
@@ -8,23 +8,43 @@ export class CountriesController {
   constructor(private readonly countriesService: CountriesService) {}
 
   @Post('create')
-  create(@Body() createCountryDto: CreateCountryDto) {
-    return this.countriesService.create(createCountryDto);
+  async create(@Body() createCountryDto: CreateCountryDto) {
+    const data = await this.countriesService.create(createCountryDto);
+    return{
+      "statusCode":HttpStatus.CREATED,
+      "message": "success",
+      "data": data
+    }
   }
 
   @Get()
-  findAll() {
-    return this.countriesService.findAll();
+  async findAll() {
+    const data = await this.countriesService.findAll();
+    return{
+      "statusCode":HttpStatus.OK,
+      "message": "success",
+      "data": data
+    }
   }
 
   @Get(':id')
-  findOne(@Param('id') id: string) {
-    return this.countriesService.findOne(+id);
+  async findOne(@Param('id') id: string) {
+    const data = await this.countriesService.findOne(+id);
+    return{
+      "statusCode":HttpStatus.OK,
+      "message": "success",
+      "data": data
+    }
   }
 
   @Patch(':id')
-  update(@Param('id') id: string, @Body() updateCountryDto: UpdateCountryDto) {
-    return this.countriesService.update(+id, updateCountryDto);
+  async update(@Param('id') id: string, @Body() updateCountryDto: UpdateCountryDto) {
+    const data = await this.countriesService.update(+id, updateCountryDto);
+    return{
+      "statusCode":HttpStatus.OK,
+      "message": "success",
+      "data": data
+    }
   }
 
   /* @Delete(':id')

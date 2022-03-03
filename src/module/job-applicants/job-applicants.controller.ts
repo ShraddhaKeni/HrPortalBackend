@@ -51,7 +51,7 @@ export class JobApplicantsController {
   async update(@Param('id') id: number, @Body() updateJobApplicantDto: UpdateJobApplicantDto) {
     const data = await this.jobApplicantsService.update(+id, updateJobApplicantDto);
     return{
-      "statusCode":HttpStatus.CREATED,
+      "statusCode":HttpStatus.OK,
       "message": "success",
       "data": data
     }
@@ -61,9 +61,9 @@ export class JobApplicantsController {
   async remove(@Param('id') id: number) {
     const data = await this.jobApplicantsService.remove(+id);
     return{
-      "statusCode":HttpStatus.CREATED,
+      "statusCode":HttpStatus.OK,
       "message": "success",
-      "data": "Job applican deleted successfully"
+      "data": "Job applicant deleted successfully"
     }
   }
 }

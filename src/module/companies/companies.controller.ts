@@ -1,4 +1,4 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
+import { Controller, Get, Post, Body, Patch, Param, Delete, HttpStatus } from '@nestjs/common';
 import { CompaniesService } from './companies.service';
 import { CreateCompanyDto } from './dto/create-company.dto';
 import { UpdateCompanyDto } from './dto/update-company.dto';
@@ -8,27 +8,52 @@ export class CompaniesController {
   constructor(private readonly companiesService: CompaniesService) {}
 
   @Post('add')
-  create(@Body() createCompanyDto: CreateCompanyDto) {
-    return this.companiesService.create(createCompanyDto);
+  async create(@Body() createCompanyDto: CreateCompanyDto) {
+    const data = await this.companiesService.create(createCompanyDto);
+    return{
+      "statusCode":HttpStatus.CREATED,
+      "message": "success",
+      "data": data
+    }
   }
 
   @Get()
-  findAll() {
-    return this.companiesService.findAll();
+  async findAll() {
+    const data = await this.companiesService.findAll();
+    return{
+      "statusCode":HttpStatus.OK,
+      "message": "success",
+      "data": data
+    }
   }
 
   @Get(':id')
-  findOne(@Param('id') id: string) {
-    return this.companiesService.findOne(id);
+  async findOne(@Param('id') id: string) {
+    const data = await this.companiesService.findOne(id);
+    return{
+      "statusCode":HttpStatus.OK,
+      "message": "success",
+      "data": data
+    }
   }
 
   @Patch(':id')
-  update(@Param('id') id: string, @Body() updateCompanyDto: UpdateCompanyDto) {
-    return this.companiesService.update(id, updateCompanyDto);
+  async update(@Param('id') id: string, @Body() updateCompanyDto: UpdateCompanyDto) {
+    const data = await this.companiesService.update(id, updateCompanyDto);
+    return{
+      "statusCode":HttpStatus.OK,
+      "message": "success",
+      "data": data
+    }
   }
 
   @Delete(':id')
-  remove(@Param('id') id: string) {
-    return this.companiesService.remove(+id);
+  async remove(@Param('id') id: string) {
+    const data = await this.companiesService.remove(+id);
+    return{
+      "statusCode":HttpStatus.OK,
+      "message": "success",
+      "data": "Company deleted successfully"
+    }
   }
 }
