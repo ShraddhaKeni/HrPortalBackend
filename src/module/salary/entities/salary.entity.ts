@@ -6,6 +6,7 @@ export class Salary {
     @PrimaryGeneratedColumn()
     id: number;
 
+    @Column()
     @ManyToOne(() => Employee, (emp: Employee) => emp.id)
     @JoinColumn({ name: 'emp_id' })
     emp_id: string;

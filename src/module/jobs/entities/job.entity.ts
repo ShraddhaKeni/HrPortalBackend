@@ -12,10 +12,12 @@ export class Job {
     @PrimaryGeneratedColumn()
     id: number
 
+    @Column()
     @ManyToOne(()=> Companies, (comp: Companies) => comp.id)
     @JoinColumn({name: 'comp_id'})
     comp_id: string
 
+    @Column()
     @ManyToOne(() => Department, (dept: Department) => dept.id)
     @JoinColumn({name: 'dept_id'})
     dept_id: number
@@ -23,6 +25,7 @@ export class Job {
     @Column()
     title: string
 
+    @Column()
     @ManyToOne(()=> Role, (role: Role) => role.id)
     @JoinColumn({name: 'role_id'})
     role_id: number
@@ -33,6 +36,7 @@ export class Job {
     @Column()
     salary: string
 
+    @Column()
     @ManyToOne(()=> Employee, (emp: Employee) => emp.id)
     @JoinColumn({name: 'raised_by_emp'})
     raised_by_emp: string

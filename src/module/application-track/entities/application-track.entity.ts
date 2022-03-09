@@ -10,27 +10,31 @@ export class ApplicationTrack {
     @PrimaryGeneratedColumn()
     id: number
 
-    @ManyToOne(()=> Job, (job: Job)=>job.id)
-    @JoinColumn({name: 'job_id'})
+    @Column()
+    @ManyToOne(() => Job, (job: Job) => job.id)
+    @JoinColumn({ name: 'job_id' })
     job_id: number
 
-    @ManyToOne(()=>JobApplicant, (jobApp: JobApplicant) => jobApp.id)
-    @JoinColumn({name: 'applicant_id'})
+    @Column()
+    @ManyToOne(() => JobApplicant, (jobApp: JobApplicant) => jobApp.id)
+    @JoinColumn({ name: 'applicant_id' })
     applicant_id: number
 
-    @Column({type: "text"})
+    @Column({ type: "text" })
     comment: string
 
-    @ManyToOne(()=> Employee,(emp: Employee) => emp.id)
-    @JoinColumn({name: 'emp_id'})
+    @Column()
+    @ManyToOne(() => Employee, (emp: Employee) => emp.id)
+    @JoinColumn({ name: 'emp_id' })
     emp_id: string
 
-    @ManyToOne(()=> LevelType, (level: LevelType) => level.id)
-    @JoinColumn({name: 'level'})
+    @Column()
+    @ManyToOne(() => LevelType, (level: LevelType) => level.id)
+    @JoinColumn({ name: 'level' })
     level: number
 
     @Column({
-        enum:[true, false],
+        enum: [true, false],
         default: true
     })
     status: boolean

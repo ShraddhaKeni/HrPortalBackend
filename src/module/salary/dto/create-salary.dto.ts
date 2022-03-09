@@ -5,6 +5,5 @@ export class CreateSalaryDto {
     emp_id: string;
 
     @IsNotEmpty()
-    @Min(1000)
     salary: number;
 }
