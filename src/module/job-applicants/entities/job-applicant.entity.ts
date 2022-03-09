@@ -7,6 +7,7 @@ export class JobApplicant {
     @PrimaryGeneratedColumn()
     id: number
 
+    @Column()
     @ManyToOne(() => Job, (job: Job) => job.id)
     @JoinColumn({ name: 'job_id' })
     job_id: number

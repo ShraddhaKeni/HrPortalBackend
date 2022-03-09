@@ -13,7 +13,7 @@ export class DocumentTypeController {
     return {
       "statusCode": HttpStatus.CREATED,
       "message": "Data inserted successfully",
-      "data": [data]
+      "data": data
     }
   }
 
@@ -23,7 +23,7 @@ export class DocumentTypeController {
     return {
       "statusCode": HttpStatus.OK,
       "message": "success",
-      "data": [data]
+      "data": data
     }
   }
 
@@ -33,7 +33,7 @@ export class DocumentTypeController {
     return {
       "statusCode": HttpStatus.OK,
       "message": "success",
-      "data": [data]
+      "data": data
     }
   }
 
@@ -43,7 +43,7 @@ export class DocumentTypeController {
     return {
       "statusCode": HttpStatus.OK,
       "message": "success",
-      "data": [data]
+      "data": data
     }
   }
 
@@ -53,7 +53,7 @@ export class DocumentTypeController {
     return {
       "statusCode": HttpStatus.OK,
       "message": "success",
-      "data": [data]
+      "data": "Document-type deleted successfully"
     }
   }
 

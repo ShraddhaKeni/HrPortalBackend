@@ -1,4 +1,4 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
+import { Controller, Get, Post, Body, Patch, Param, Delete, HttpStatus } from '@nestjs/common';
 import { StatesService } from './states.service';
 import { CreateStateDto } from './dto/create-state.dto';
 import { UpdateStateDto } from './dto/update-state.dto';
@@ -8,23 +8,53 @@ export class StatesController {
   constructor(private readonly statesService: StatesService) {}
 
   @Post('create')
-  create(@Body() createStateDto: CreateStateDto) {
-    return this.statesService.create(createStateDto);
+  async create(@Body() createStateDto: CreateStateDto) {
+    const data = await this.statesService.create(createStateDto);
+    return{
+      "statusCode":HttpStatus.CREATED,
+      "message": "success",
+      "data": data
+    }
   }
 
   @Get()
-  findAll() {
-    return this.statesService.findAll();
+  async findAll() {
+    const data = await this.statesService.findAll();
+    return{
+      "statusCode":HttpStatus.OK,
+      "message": "success",
+      "data": data
+    }
+  }
+  
+  @Get('list/:id')
+  async findAllUsCountry(@Param('id') id: string) {
+    const data = await this.statesService.findAllUsCountry(+id);
+    return{
+      "statusCode":HttpStatus.OK,
+      "message": "success",
+      "data": data
+    }
   }
 
   @Get(':id')
-  findOne(@Param('id') id: string) {
-    return this.statesService.findOne(+id);
+  async findOne(@Param('id') id: string) {
+    const data = await this.statesService.findOne(+id);
+    return{
+      "statusCode":HttpStatus.OK,
+      "message": "success",
+      "data": data
+    }
   }
 
   @Patch(':id')
-  update(@Param('id') id: string, @Body() updateStateDto: UpdateStateDto) {
-    return this.statesService.update(+id, updateStateDto);
+  async update(@Param('id') id: string, @Body() updateStateDto: UpdateStateDto) {
+    const data = await this.statesService.update(+id, updateStateDto);
+    return{
+      "statusCode":HttpStatus.OK,
+      "message": "success",
+      "data": data
+    }
   }
 
   /* @Delete(':id')

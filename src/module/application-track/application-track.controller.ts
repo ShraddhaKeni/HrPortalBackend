@@ -13,7 +13,7 @@ export class ApplicationTrackController {
     return {
       "statusCode":HttpStatus.CREATED,
       "message": "success",
-      "data": [data]
+      "data": data
     }
   }
 
@@ -23,7 +23,7 @@ export class ApplicationTrackController {
     return {
       "statusCode":HttpStatus.OK,
       "message": "success",
-      "data": [data]
+      "data": data
     }
   }
 
@@ -33,7 +33,7 @@ export class ApplicationTrackController {
     return {
       "statusCode":HttpStatus.OK,
       "message": "success",
-      "data": [data]
+      "data": data
     }
   }
 
@@ -41,9 +41,9 @@ export class ApplicationTrackController {
   async update(@Param('id') id: string, @Body() updateApplicationTrackDto: UpdateApplicationTrackDto) {
     const data = await this.applicationTrackService.update(+id, updateApplicationTrackDto);
     return {
-      "statusCode":HttpStatus.CREATED,
+      "statusCode":HttpStatus.OK,
       "message": "success",
-      "data": [data]
+      "data": data
     }
   }
 

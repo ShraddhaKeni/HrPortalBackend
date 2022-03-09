@@ -12,6 +12,7 @@ export class User {
   @Column()
   password: string;
 
+  @Column()
   @ManyToOne(() => Role, (role: Role) => role.id)
   @JoinColumn({name: 'role_id'})
   role_id: number;

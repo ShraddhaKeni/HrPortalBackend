@@ -14,6 +14,10 @@ export class StatesService {
   findAll() {
     return this.statesRepository.getAllStates();
   }
+  
+  findAllUsCountry(cid: number) {
+    return this.statesRepository.getStateUsingCountryId(cid);
+  }
 
   findOne(id: number) {
     return this.statesRepository.getStateData(id);

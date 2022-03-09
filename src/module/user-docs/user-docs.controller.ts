@@ -32,7 +32,7 @@ export class UserDocsController {
     return {
       "statusCode": HttpStatus.CREATED,
       "message": "success",
-      "data": [data]
+      "data": data
     }
   }
 
@@ -42,7 +42,7 @@ export class UserDocsController {
     return {
       "statusCode": HttpStatus.OK,
       "message": "success",
-      "data": [data]
+      "data": data
     }
   }
 
@@ -52,7 +52,7 @@ export class UserDocsController {
     return {
       "statusCode": HttpStatus.OK,
       "message": "success",
-      "data": [data]
+      "data": data
     }
   }
 
@@ -62,7 +62,7 @@ export class UserDocsController {
     return {
       "statusCode": HttpStatus.OK,
       "message": "success",
-      "data": [data]
+      "data": data
     }
   }
 

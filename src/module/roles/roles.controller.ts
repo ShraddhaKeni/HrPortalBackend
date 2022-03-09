@@ -1,4 +1,4 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
+import { Controller, Get, Post, Body, Patch, Param, Delete, HttpStatus } from '@nestjs/common';
 import { RolesService } from './roles.service';
 import { CreateRoleDto } from './dto/create-role.dto';
 import { UpdateRoleDto } from './dto/update-role.dto';
@@ -8,27 +8,52 @@ export class RolesController {
   constructor(private readonly rolesService: RolesService) {}
 
   @Post('add')
-  create(@Body() createRoleDto: CreateRoleDto) {
-    return this.rolesService.create(createRoleDto);
+  async create(@Body() createRoleDto: CreateRoleDto) {
+    const data = await this.rolesService.create(createRoleDto);
+    return{
+      "statusCode":HttpStatus.CREATED,
+      "message": "success",
+      "data": data
+    }
   }
 
   @Get()
-  findAll() {
-    return this.rolesService.findAll();
+  async findAll() {
+    const data = await this.rolesService.findAll();
+    return{
+      "statusCode":HttpStatus.OK,
+      "message": "success",
+      "data": data
+    }
   }
 
   @Get(':id')
-  findOne(@Param('id') id: string) {
-    return this.rolesService.findOne(+id);
+  async findOne(@Param('id') id: string) {
+    const data = await this.rolesService.findOne(+id);
+    return{
+      "statusCode":HttpStatus.OK,
+      "message": "success",
+      "data": data
+    }
   }
 
   @Patch(':id')
-  update(@Param('id') id: string, @Body() updateRoleDto: UpdateRoleDto) {
-    return this.rolesService.update(+id, updateRoleDto);
+  async update(@Param('id') id: string, @Body() updateRoleDto: UpdateRoleDto) {
+    const data = await this.rolesService.update(+id, updateRoleDto);
+    return{
+      "statusCode":HttpStatus.OK,
+      "message": "success",
+      "data": data
+    }
   }
 
   @Delete(':id')
-  remove(@Param('id') id: string) {
-    return this.rolesService.remove(+id);
+  async remove(@Param('id') id: string) {
+    const data = await this.rolesService.remove(+id);
+    return{
+      "statusCode":HttpStatus.OK,
+      "message": "success",
+      "data": "Role deleted successfully"
+    }
   }
 }

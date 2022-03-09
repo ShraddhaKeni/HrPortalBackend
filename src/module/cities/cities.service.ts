@@ -14,6 +14,10 @@ export class CitiesService {
   findAll() {
     return this.citiesRepository.getAllCities();
   }
+  
+  findCityUsingStateId(id: number) {
+    return this.citiesRepository.getCityUsingStateId(id);
+  }
 
   findOne(id: number) {
     return this.citiesRepository.getCityData(id);

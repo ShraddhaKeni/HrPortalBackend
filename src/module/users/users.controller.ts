@@ -1,4 +1,4 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete, UploadedFile, UseInterceptors } from '@nestjs/common';
+import { Controller, Get, Post, Body, Patch, Param, Delete, UploadedFile, UseInterceptors, HttpStatus } from '@nestjs/common';
 import { UsersService } from './users.service';
 import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
@@ -21,7 +21,7 @@ export class UsersController {
       fileFilter: imageFileFilter
     })
   )
-  create(@Body() createUserDto: CreateUserFormDataDto, @UploadedFile() file: Express.Multer.File) {
+  async create(@Body() createUserDto: CreateUserFormDataDto, @UploadedFile() file?: Express.Multer.File) {
     let userData = new CreateUserDto();
     userData.username = createUserDto.username;
     userData.password = createUserDto.password;
@@ -29,23 +29,45 @@ export class UsersController {
     userData.contact_no = createUserDto.contact_no;
     userData.email = createUserDto.email;
     userData.dob = createUserDto.dob;
-    userData.profile_pic = file.filename;
-    return this.usersService.create(userData);
+    if(file != null) {
+      userData.profile_pic = file.filename;
+    }
+    const data = await this.usersService.create(userData);
+    return{
+      "statusCode":HttpStatus.CREATED,
+      "message": "success",
+      "data": data
+    }
   }
 
   @Get('findAll')
-  findAll() {
-    return this.usersService.findAll();
+  async findAll() {
+    const data = await this.usersService.findAll();
+    return{
+      "statusCode":HttpStatus.OK,
+      "message": "success",
+      "data": data
+    }
   }
 
   @Get(':id')
-  findOne(@Param('id') id: string) {
-    return this.usersService.findOne(id);
+  async findOne(@Param('id') id: string) {
+    const data = await this.usersService.findOne(id);
+    return{
+      "statusCode":HttpStatus.OK,
+      "message": "success",
+      "data": data
+    }
   }
 
   @Patch(':id')
-  update(@Param('id') id: string, @Body() updateUserDto: UpdateUserDto) {
-    return this.usersService.update(id, updateUserDto);
+  async update(@Param('id') id: string, @Body() updateUserDto: UpdateUserDto) {
+    const data = await this.usersService.update(id, updateUserDto);
+    return{
+      "statusCode":HttpStatus.OK,
+      "message": "success",
+      "data": data
+    }
   }
 
 }

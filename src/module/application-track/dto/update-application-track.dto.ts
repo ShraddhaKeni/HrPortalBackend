@@ -19,8 +19,8 @@ export class UpdateApplicationTrackDto {
     emp_id?: string
 
     @IsOptional()
-    @IsString()
-    level?: string
+    @IsNumber()
+    level?: number
 
     @IsOptional()
     @IsBoolean()

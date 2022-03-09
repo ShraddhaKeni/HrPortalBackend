@@ -31,14 +31,14 @@ export class SalaryRepository extends Repository<Salary>{
 
     async getAllSalaries(): Promise<Salary[]> {
         return new Promise((resolve, reject) => {
-            const employees = this.find({
+            const salaries = this.find({
                 where: {
                     status: true
                 }
             });
-            employees.then(response => {
+            salaries.then(response => {
                 if (response) {
-                    resolve(employees)
+                    resolve(salaries)
                 } else {
                     reject(new HttpException("No salaries found", HttpStatus.NOT_FOUND))
                 }

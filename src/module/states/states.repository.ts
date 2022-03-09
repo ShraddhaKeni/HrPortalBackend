@@ -63,4 +63,25 @@ export class StatesRepository extends Repository<State> {
             });
         });
     }
+
+    async getStateUsingCountryId(c_id: number): Promise<State[]> {
+        return new Promise((resolve, reject) => {
+            const stResp = this.find({
+                where: {
+                    country_id: c_id
+                },
+                select:['id','name'],
+                order:{
+                    id:'ASC'
+                }
+            });
+            stResp.then(resp => {
+              if (resp) {
+                resolve(stResp);
+              } else {
+                reject(new HttpException('No Data', HttpStatus.NOT_FOUND));
+              }
+            });
+        });
+    }
 }

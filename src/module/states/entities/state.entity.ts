@@ -6,6 +6,7 @@ export class State {
     @PrimaryGeneratedColumn()
     id: number;
 
+    @Column()
     @ManyToOne(() => Country, (country: Country) => country.id)
     @JoinColumn({name: 'country_id'})
     country_id: number;

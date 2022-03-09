@@ -14,14 +14,17 @@ export class Companies {
     @Column({ type: "text"})
     address: string;
 
+    @Column()
     @ManyToOne(() => Country, (country: Country) => country.id)
     @JoinColumn({name: 'country_id'})
     country_id: number;
 
+    @Column()
     @ManyToOne(() => State, (st: State) => st.id)
     @JoinColumn({name: 'state_id'})
     state_id: number;
 
+    @Column()
     @ManyToOne(() => City, (ct: City) => ct.id)
     @JoinColumn({name: 'city_id'})
     city_id: number;
