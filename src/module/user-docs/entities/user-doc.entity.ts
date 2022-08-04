@@ -13,6 +13,7 @@ export class UserDoc {
     @Column()
     doc_path: string
 
+
     @Column()
     @ManyToOne(() => User, (user: User) => user.id)
     @JoinColumn({name: "user_id"})
@@ -30,3 +31,7 @@ export class UserDoc {
     @UpdateDateColumn()
     updatedAt: Date
 }
+
+
+
+

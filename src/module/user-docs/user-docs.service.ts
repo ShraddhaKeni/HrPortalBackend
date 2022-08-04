@@ -19,12 +19,17 @@ export class UserDocsService {
     return this.userDocsRepository.findUserDocs(id)
   }
 
-  update(id: number, updateUserDocDto: UpdateUserDocDto) {
-    return this.userDocsRepository.updateUserDoc(id, updateUserDocDto)
+  update(id: string,doc_id:number, updateUserDocDto: UpdateUserDocDto) {
+    return this.userDocsRepository.updateUserDoc(id, doc_id, updateUserDocDto)
   }
 
   remove(id: number){
     return this.userDocsRepository.deleteUserDoc(id)
+  }
+
+  upDateDoc(updateUserDocDto: UpdateUserDocDto) //fake post request to update document
+  {
+    return this.userDocsRepository.docUpdate(updateUserDocDto)
   }
 
 }

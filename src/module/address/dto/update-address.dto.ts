@@ -25,8 +25,10 @@ export class UpdateAddressDto {
     pincode?: string;
 
     @IsOptional()
+    @IsString()
     type?: AddressType;
 
     @IsBoolean()
+    @IsOptional() //added for frontend
     status: boolean;
 }

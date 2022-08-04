@@ -2,9 +2,6 @@ import { IsBoolean, IsNotEmpty, IsNumber, IsOptional, IsString, Min } from 'clas
 
 export class UpdateJobDto {
 
-    @IsOptional()
-    @IsString()
-    comp_id?: string
 
     @IsOptional()
     @IsNumber()
@@ -29,7 +26,7 @@ export class UpdateJobDto {
     salary?: string
 
     @IsOptional()
-    @IsNumber()
+    @IsString()
     raised_by_emp?: string
 
     @IsOptional()

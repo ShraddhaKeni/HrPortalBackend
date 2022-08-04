@@ -2,6 +2,7 @@ import { Module } from '@nestjs/common';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { TypeOrmModule } from '@nestjs/typeorm';
 
+
 @Module({
     imports: [
         /* TypeOrmModule.forRootAsync({
@@ -40,11 +41,11 @@ import { TypeOrmModule } from '@nestjs/typeorm';
                         ssl: isProduction ? { rejectUnauthorized: false } : null,
                     },
                     type: 'postgres',
-                    host: process.env.DB_HOST,
+                    host: 'localhost',
                     port: 5432,
-                    username: process.env.DB_USERNAME,
-                    password: process.env.DB_PASSWORD,
-                    database: process.env.DB_DATABASE,
+                    username: 'postgres',
+                    password: 'postgres',
+                    database: 'hrportalDB',
                     autoLoadEntities: true,
                     logging: true,
                     synchronize: true

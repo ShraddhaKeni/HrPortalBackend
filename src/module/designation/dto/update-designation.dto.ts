@@ -7,6 +7,5 @@ export class UpdateDesignationDto {
     name?: string;
 
     @IsOptional()
-    @IsString()
-    status?: boolean
+    status?: boolean;   
 }

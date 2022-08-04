@@ -27,7 +27,7 @@ export class JobApplicantsRepository extends Repository<JobApplicant>{
         return new Promise((resolve, reject) => {
             const jobApplicants = this.find({
                 where: {
-                    status: true
+                    //status: true
                 }
             })
             jobApplicants.then(response => {
@@ -45,7 +45,7 @@ export class JobApplicantsRepository extends Repository<JobApplicant>{
             const jobApplicants = this.find({
                 where: {
                     job_id: id,
-                    status: true
+                    //status: true
                 }
             })
             jobApplicants.then(response => {
@@ -63,7 +63,7 @@ export class JobApplicantsRepository extends Repository<JobApplicant>{
             const Applicant = this.findOne({
                 where: {
                     id: id,
-                    status: true
+                    //status: true
                 }
             })
             Applicant.then(response => {
@@ -84,7 +84,7 @@ export class JobApplicantsRepository extends Repository<JobApplicant>{
                     const findJobApplicant = this.findOne({
                         where: {
                             id: id,
-                            status: true
+                            //status: true
                         }
                     })
                     findJobApplicant.then(response => {

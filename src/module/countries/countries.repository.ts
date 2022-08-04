@@ -44,7 +44,7 @@ export class CountriesRepository extends Repository<Country> {
         return new Promise(resolve => {
             const countries = this.find({
                 where: {
-                    status: true
+                    
                 }
             });
             resolve(countries);

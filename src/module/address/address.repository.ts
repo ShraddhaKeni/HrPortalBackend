@@ -28,7 +28,7 @@ export class AddressRepository extends Repository<Address> {
         return new Promise(resolve => {
             const addr = this.find({
                 where: {
-                    status: true
+                    //status: true  For development purpose have set to Comment
                 },
                 order: {
                     id: "ASC"

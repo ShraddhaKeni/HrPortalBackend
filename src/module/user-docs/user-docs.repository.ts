@@ -22,7 +22,7 @@ export class UserDocsRepository extends Repository<UserDoc>{
         return new Promise((resolve, reject)=>{
             const docs = this.find({
                 where:{
-                    status: true
+                    //status: true
                 }
             })
             docs.then(response => {
@@ -53,28 +53,36 @@ export class UserDocsRepository extends Repository<UserDoc>{
         })
     }
 
-    async updateUserDoc(id: number, updateUserDoc: UpdateUserDocDto): Promise<UserDoc>{
+    async updateUserDoc(id: string,doc_id:number, updateUserDoc: UpdateUserDocDto): Promise<UserDoc>{
         return new Promise((resolve, reject)=>{
-            const getDoc = this.findOne({
-                where:{
-                    user_id: id,
-                    doc_type_id: updateUserDoc.doc_type_id
+          
+            const updateD = this.update(doc_id,updateUserDoc)
+            updateD.then(response=>{
+                if(response)
+                {
+                const findDoc = this.findOne({
+                    where:{
+                        user_id: id,
+                        id: doc_id
+                    }
+                })
+                findDoc.then(response=>{
+                    if(response)
+                    {
+                        this.update(doc_id,updateUserDoc)
+                        resolve(findDoc)
+                    }
+                    else
+                    {
+                        reject(new HttpException("User documents not found", HttpStatus.NOT_FOUND))
+                    }
+                })
+                }
+                else{
+                    reject(new HttpException("Error while uploading document", HttpStatus.NOT_FOUND)) 
                 }
             })
-            getDoc.then(response => {
-                if(response){
-                    this.update(response.id, {status:false})
-                }else{
-                    reject(new HttpException("User documents not found", HttpStatus.NOT_FOUND))
-                }
-            })
-            const updateDoc = this.create(updateUserDoc)
-            try{
-                this.save(updateDoc)
-                resolve(updateDoc)
-            }catch(error){
-                reject(new HttpException("Error while uploading document", HttpStatus.NOT_FOUND))
-            }
+           
         })
     }
 
@@ -100,6 +108,40 @@ export class UserDocsRepository extends Repository<UserDoc>{
                 }
             })
         })
+    }
+
+    async docUpdate(updateUserDoc: UpdateUserDocDto):Promise<UserDoc>
+    {
+        return new Promise((resolve, reject) => {
+            const update = this.update(updateUserDoc.id,updateUserDoc)
+            const doc_id = updateUserDoc.id;
+            update.then(response=>{
+                if(response)
+                {
+                    const findDoc = this.findOne({
+                        where:
+                            {
+                                id:doc_id
+                            }
+                    })
+                    findDoc.then(response=>{
+                        if(response)
+                        {
+                            this.update(doc_id,updateUserDoc)
+                            resolve(findDoc)
+                        }
+                        else
+                        {
+                            reject(new HttpException("User documents not found", HttpStatus.NOT_FOUND))
+                        }
+                    })
+                }
+                else
+                {
+                    reject(new HttpException("Error Updating documents", HttpStatus.NOT_FOUND))
+                }
+            })
+        })    
     }
 
 }

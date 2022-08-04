@@ -33,7 +33,7 @@ export class SalaryRepository extends Repository<Salary>{
         return new Promise((resolve, reject) => {
             const salaries = this.find({
                 where: {
-                    status: true
+                    //status: true
                 }
             });
             salaries.then(response => {

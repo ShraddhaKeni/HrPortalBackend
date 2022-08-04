@@ -1,5 +1,5 @@
 import { Type } from "class-transformer";
-import { IsDate, IsEmail, IsOptional, IsString, Matches, MaxLength, MinLength } from "class-validator";
+import { IsDate, IsEmail, IsOptional, IsString, Matches, MaxLength, MinLength,IsInt } from "class-validator";
 
 export class CreateUserFormDataDto {
     @IsString()
@@ -15,8 +15,8 @@ export class CreateUserFormDataDto {
     })
     password: string;
 
-    @IsString()
-    role_id: string;
+    @IsInt()
+    role_id: number;
 
     @IsString()
     @MinLength(10)

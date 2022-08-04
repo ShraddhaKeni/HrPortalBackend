@@ -1,4 +1,4 @@
-import { IsEmail, IsNumber, IsNumberString, IsString, MaxLength, MinLength } from "class-validator"
+import { IsBoolean, IsEmail, IsNumber, IsNumberString, IsString, MaxLength, MinLength } from "class-validator"
 
 export class CreateJobApplicantDto {
     
@@ -20,4 +20,7 @@ export class CreateJobApplicantDto {
 
     @IsString()
     cv: string
+
+    @IsBoolean()
+    status:boolean
 }

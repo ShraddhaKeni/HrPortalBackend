@@ -30,7 +30,7 @@ export class UsersController {
     userData.email = createUserDto.email;
     userData.dob = createUserDto.dob;
     if(file != null) {
-      userData.profile_pic = file.filename;
+      userData.profile_pic = file.path;
     }
     const data = await this.usersService.create(userData);
     return{

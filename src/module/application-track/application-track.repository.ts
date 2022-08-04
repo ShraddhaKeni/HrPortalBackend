@@ -26,7 +26,7 @@ export class ApplicationTrackRepository extends Repository<ApplicationTrack>{
         return new Promise((resolve, reject) => {
             const jobApplications = this.find({
                 where: {
-                    status: true
+                    //status: true
                 }
             })
             jobApplications.then(response => {
@@ -44,7 +44,7 @@ export class ApplicationTrackRepository extends Repository<ApplicationTrack>{
             const jobApplication = this.find({
                 where: {
                     applicant_id: id,
-                    status: true
+                    //status: true
                 }
             })
             jobApplication.then(response => {
@@ -65,7 +65,7 @@ export class ApplicationTrackRepository extends Repository<ApplicationTrack>{
                     const findJobApplication = this.findOne({
                         where: {
                             id: id,
-                            status: true
+                            //status: true
                         }
                     })
                     findJobApplication.then(response => {

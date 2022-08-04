@@ -1,9 +1,13 @@
-import { IsOptional, IsString } from "class-validator";
-
+import { IsBoolean, IsInt, IsOptional,IsNumber, IsString } from "class-validator";
+import { Type } from "class-transformer";
 export class CreateUserDocFormDataDto {
 
-    @IsString()
-    doc_type_id: string;
+    @IsOptional()
+    id:number;
+
+    @IsNumber()
+    @Type(()=>Number)
+    doc_type_id: number;
 
     @IsString()
     @IsOptional()
@@ -12,7 +16,7 @@ export class CreateUserDocFormDataDto {
     @IsString()
     user_id: string;
 
-    @IsString()
-    status: string;
-
+    @IsBoolean()
+    @Type(()=>Boolean)
+    status: boolean;
 }
