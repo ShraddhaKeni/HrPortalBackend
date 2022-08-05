@@ -26,7 +26,7 @@ export class EmployeesRepository extends Repository<Employee> {
         return new Promise(resolve => {
             const emp = this.find({
                 where: {
-                    status: true
+                    //status: true
                 }
             });
             resolve(emp);

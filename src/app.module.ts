@@ -21,6 +21,7 @@ import { LevelTypesModule } from './module/level-types/level-types.module';
 import { JobApplicantsModule } from './module/job-applicants/job-applicants.module';
 import { ApplicationTrackModule } from './module/application-track/application-track.module';
 import { AddressModule } from './module/address/address.module';
+import { OffboardModule } from './module/offboard/offboard.module';
 
 @Module({
   imports: [
@@ -45,7 +46,8 @@ import { AddressModule } from './module/address/address.module';
     LevelTypesModule,
     JobApplicantsModule,
     ApplicationTrackModule,
-    AddressModule
+    AddressModule,
+    OffboardModule
   ],
 })
 export class AppModule { }
