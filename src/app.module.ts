@@ -22,6 +22,7 @@ import { JobApplicantsModule } from './module/job-applicants/job-applicants.modu
 import { ApplicationTrackModule } from './module/application-track/application-track.module';
 import { AddressModule } from './module/address/address.module';
 import { OffboardModule } from './module/offboard/offboard.module';
+import {AuthsModule} from './auths/auth.module'
 
 @Module({
   imports: [
@@ -47,7 +48,8 @@ import { OffboardModule } from './module/offboard/offboard.module';
     JobApplicantsModule,
     ApplicationTrackModule,
     AddressModule,
-    OffboardModule
+    OffboardModule,
+    AuthsModule
   ],
 })
 export class AppModule { }

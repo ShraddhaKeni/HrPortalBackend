@@ -2,6 +2,11 @@ import { Type } from "class-transformer";
 import { IsDate, IsEmail, IsInt, IsOptional, IsString, Matches, MaxLength, MinLength } from "class-validator";
 
 export class CreateUserDto {
+
+    @IsOptional()
+    @IsString()
+    id:string;
+
     @IsString()
     @MinLength(4)
     @MaxLength(20)
