@@ -34,11 +34,11 @@ export class AuthService {
       const data = this.usersRepository.update({username:username},{token:accessToken,updatedAt:new Date()}).then(response=>{
         if(response)
         {
-          console.log(`Hey ${data} `)
-         res.cookie('jwt',accessToken,{httpOnly:true})
+          
+          res.cookie('jwt',accessToken,{httpOnly:true})
 
           
-          return {accessToken}
+          return {accessToken,role:user.role_id}
 
         }
         throw new UnauthorizedException('Cannot Update Token');

@@ -4,6 +4,7 @@ import { CreateRoleDto } from "./dto/create-role.dto";
 import { UpdateRoleDto } from "./dto/update-role.dto";
 import { Role } from "./entities/role.entity";
 
+
 @EntityRepository(Role)
 export class RolesRepository extends Repository<Role>{
     async createRole(createRoleDto: CreateRoleDto): Promise<Role>{
@@ -23,7 +24,11 @@ export class RolesRepository extends Repository<Role>{
 
     async findAllRoles(): Promise<Role[]> {
         return new Promise(resolve => {
-            const roles = this.find();
+            const roles = this.find({
+                where:{
+                    status:true
+                }
+            });
             resolve(roles);
         });
     }
@@ -56,4 +61,34 @@ export class RolesRepository extends Repository<Role>{
             )
         })
     }
+
+    async deleteRole(role_id:number):Promise<Role>{
+        return new Promise((resolve, reject) => {
+            const role = this.update(role_id,{status:false});
+            role.then(response=>{
+                const fineRole = this.findOne({
+                    where:{
+                        id:role_id
+                    }
+                })
+                fineRole.then(resp=>{
+                    if(resp)
+                    {
+                        resolve(fineRole)
+                    }
+                    else{
+                        reject(new HttpException('Role not found', HttpStatus.NOT_FOUND)); 
+                    }
+                })
+                .catch(err=>{
+                    reject(new HttpException('Role not found', HttpStatus.NOT_FOUND)); 
+                })
+            })
+            .catch(err=>{
+                reject(new HttpException('Role not found', HttpStatus.NOT_FOUND)); 
+            })
+            
+        });
+    }
+
 }

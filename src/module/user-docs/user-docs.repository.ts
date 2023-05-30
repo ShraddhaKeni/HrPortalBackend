@@ -22,7 +22,7 @@ export class UserDocsRepository extends Repository<UserDoc>{
         return new Promise((resolve, reject)=>{
             const docs = this.find({
                 where:{
-                    //status: true
+                    status: true
                 }
             })
             docs.then(response => {

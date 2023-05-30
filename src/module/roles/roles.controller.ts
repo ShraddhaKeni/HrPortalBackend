@@ -53,7 +53,7 @@ export class RolesController {
     return{
       "statusCode":HttpStatus.OK,
       "message": "success",
-      "data": "Role deleted successfully"
+      "data": data
     }
   }
 }
