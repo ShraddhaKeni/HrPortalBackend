@@ -1,15 +1,41 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete, HttpStatus } from '@nestjs/common';
+import { Controller, Get, Post, Body, Patch, Param, Delete, HttpStatus, UseInterceptors, UploadedFile } from '@nestjs/common';
 import { EmployeesService } from './employees.service';
 import { CreateEmployeeDto } from './dto/create-employee.dto';
 import { UpdateEmployeeDto } from './dto/update-employee.dto';
+import { FileInterceptor } from '@nestjs/platform-express';
+import { diskStorage } from 'multer';
+import { docFileFilter, editFileName } from 'src/utils/file-upload.utils';
+import { CreateEmployeeFormDataDto } from './dto/create-employee-formdata.dto';
 
 @Controller('employees')
 export class EmployeesController {
   constructor(private readonly employeesService: EmployeesService) {}
 
   @Post('create')
-  async create(@Body() createEmployeeDto: CreateEmployeeDto) {
-    const data = await this.employeesService.create(createEmployeeDto);
+  @UseInterceptors(
+    FileInterceptor('signature',{
+        storage:diskStorage({
+            destination:'./public/uploads/signatures',
+            filename:editFileName
+        }),
+        fileFilter: docFileFilter
+    })
+)
+  async create(@Body() createEmployeeFormDataDto: CreateEmployeeFormDataDto,@UploadedFile() file?:Express.Multer.File) {
+    console.log(file.path)
+    let createEMP = new CreateEmployeeFormDataDto()
+    createEMP.name = createEmployeeFormDataDto.name;
+    createEMP.comp_id = createEmployeeFormDataDto.comp_id;
+    createEMP.user_id = createEmployeeFormDataDto.user_id;
+    createEMP.desig_id = createEmployeeFormDataDto.desig_id;
+    createEMP.dept_id = createEmployeeFormDataDto.dept_id;
+    createEMP.email = createEmployeeFormDataDto.email;
+    createEMP.status = createEmployeeFormDataDto.status;
+    createEMP.doj = createEmployeeFormDataDto.doj;
+    createEMP.emp_code = createEmployeeFormDataDto.emp_code;
+    createEMP.signature =file!=null?file.path:'/';
+    
+    const data = await this.employeesService.create(createEMP);
     return{
       "statusCode":HttpStatus.CREATED,
       "message": "success",

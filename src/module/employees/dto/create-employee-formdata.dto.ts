@@ -1,7 +1,7 @@
 import { Type } from "class-transformer";
 import { IsBoolean, IsDate, IsEmail, IsInt, IsOptional, IsString, MaxLength, MinLength } from "class-validator";
 
-export class CreateEmployeeDto {
+export class CreateEmployeeFormDataDto{
     @IsString()
     name: string;
     
@@ -12,9 +12,11 @@ export class CreateEmployeeDto {
     user_id: string;
 
     @IsInt()
+    @Type(()=>Number)
     desig_id: number;
     
     @IsInt()
+    @Type(()=>Number)
     dept_id: number;
 
     @IsEmail()
@@ -33,4 +35,7 @@ export class CreateEmployeeDto {
     @MaxLength(10)
     emp_code: string;
 
+    @IsString()
+    @IsOptional()
+    signature?:string;
 }

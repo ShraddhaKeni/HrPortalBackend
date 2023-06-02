@@ -1,12 +1,17 @@
-import { HttpException, HttpStatus } from "@nestjs/common";
+import { HttpException, HttpStatus, UseInterceptors } from "@nestjs/common";
 import { EntityRepository, Repository } from "typeorm";
 import { CreateEmployeeDto } from "./dto/create-employee.dto";
 import { UpdateEmployeeDto } from "./dto/update-employee.dto";
 import { Employee } from "./entities/employee.entity";
+import { FileInterceptor } from "@nestjs/platform-express";
+import { diskStorage } from "multer";
+import { docFileFilter,editFileName } from "src/utils/file-upload.utils";
 
 @EntityRepository(Employee)
 export class EmployeesRepository extends Repository<Employee> {
+   
     async createEmployee(employeeData: CreateEmployeeDto): Promise<Employee> {
+        console.log(employeeData)
         return new Promise(resolve => {
             const emp = this.create(employeeData);
             this.save(emp);
@@ -26,7 +31,7 @@ export class EmployeesRepository extends Repository<Employee> {
         return new Promise(resolve => {
             const emp = this.find({
                 where: {
-                    //status: true
+                    status: true
                 }
             });
             resolve(emp);

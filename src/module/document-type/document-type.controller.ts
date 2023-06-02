@@ -17,6 +17,9 @@ export class DocumentTypeController {
     }
   }
 
+
+
+
   @Get('findAll')
   async findAll() {
     var data = await this.documentTypeService.findAll();

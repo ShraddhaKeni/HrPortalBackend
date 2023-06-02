@@ -35,9 +35,7 @@ export class AuthService {
         if(response)
         {
           
-          res.cookie('jwt',accessToken,{httpOnly:true})
-
-          
+          res.cookie('jwt',accessToken,{httpOnly:true})          
           return {accessToken,role:user.role_id}
 
         }

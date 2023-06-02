@@ -15,17 +15,18 @@ export class UsersController {
   @UseInterceptors(
     FileInterceptor('profile_pic', {
       storage: diskStorage({
-        destination: './src/uploads/profile',
+        destination: './public/uploads/profile',
         filename: editFileName
       }),
       fileFilter: imageFileFilter
     })
   )
   async create(@Body() createUserDto: CreateUserFormDataDto, @UploadedFile() file?: Express.Multer.File) {
+    
     let userData = new CreateUserDto();
     userData.username = createUserDto.username;
     userData.password = createUserDto.password;
-    userData.role_id = +createUserDto.role_id;
+    userData.role_id = createUserDto.role_id;
     userData.contact_no = createUserDto.contact_no;
     userData.email = createUserDto.email;
     userData.dob = createUserDto.dob;

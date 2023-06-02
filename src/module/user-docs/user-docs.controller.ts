@@ -25,8 +25,6 @@ export class UserDocsController {
     })
   )
   async create(@Body() createUserDocDto: CreateUserDocFormDataDto, @UploadedFile() file: Express.Multer.File) {
-    console.log(`User doc data: ${JSON.stringify(createUserDocDto)}`);
-    console.log(file)
     let userDocData = new CreateUserDocDto();
     userDocData.doc_type_id = createUserDocDto.doc_type_id;
     userDocData.doc_path =file.path;
