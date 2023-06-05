@@ -22,7 +22,7 @@ export class EmployeesController {
     })
 )
   async create(@Body() createEmployeeFormDataDto: CreateEmployeeFormDataDto,@UploadedFile() file?:Express.Multer.File) {
-    console.log(file.path)
+    
     let createEMP = new CreateEmployeeFormDataDto()
     createEMP.name = createEmployeeFormDataDto.name;
     createEMP.comp_id = createEmployeeFormDataDto.comp_id;
@@ -33,7 +33,10 @@ export class EmployeesController {
     createEMP.status = createEmployeeFormDataDto.status;
     createEMP.doj = createEmployeeFormDataDto.doj;
     createEMP.emp_code = createEmployeeFormDataDto.emp_code;
-    createEMP.signature =file!=null?file.path:'/';
+    if(file.path!==null)
+    {
+      createEMP.signature = file.path
+    }
     
     const data = await this.employeesService.create(createEMP);
     return{
@@ -72,4 +75,46 @@ export class EmployeesController {
       "data": "Employee deleted successfully"
     }
   }
+
+
+  @Post('update/:id')
+  @UseInterceptors(
+    FileInterceptor('signature',{
+        storage:diskStorage({
+            destination:'./public/uploads/signatures',
+            filename:editFileName
+        }),
+        fileFilter: docFileFilter
+    })
+  )
+async formUpdate(@Param('id') id:string,@Body() createEmployeeFormDataDto:CreateEmployeeFormDataDto,@UploadedFile() file?:Express.Multer.File)
+  {
+    let createEMP = new CreateEmployeeFormDataDto()
+    createEMP.name = createEmployeeFormDataDto.name;
+    createEMP.comp_id = createEmployeeFormDataDto.comp_id;
+    createEMP.user_id = createEmployeeFormDataDto.user_id;
+    createEMP.desig_id = createEmployeeFormDataDto.desig_id;
+    createEMP.dept_id = createEmployeeFormDataDto.dept_id;
+    createEMP.email = createEmployeeFormDataDto.email;
+    createEMP.status = createEmployeeFormDataDto.status;
+    createEMP.doj = createEmployeeFormDataDto.doj;
+    createEMP.emp_code = createEmployeeFormDataDto.emp_code;
+    if(file.path!==null)
+    {
+      createEMP.signature = file.path
+    }
+    
+
+      const data = await this.employeesService.updateForm(id,createEMP)
+      return{
+        "statusCode":HttpStatus.OK,
+        "message": "success",
+        "data": data
+      }
+  }
+
+
+
 }
+
+

@@ -6,16 +6,23 @@ import { Employee } from "./entities/employee.entity";
 import { FileInterceptor } from "@nestjs/platform-express";
 import { diskStorage } from "multer";
 import { docFileFilter,editFileName } from "src/utils/file-upload.utils";
+import { CreateEmployeeFormDataDto } from "./dto/create-employee-formdata.dto";
+import { resolve } from "path";
+import { response } from "express";
 
 @EntityRepository(Employee)
 export class EmployeesRepository extends Repository<Employee> {
    
     async createEmployee(employeeData: CreateEmployeeDto): Promise<Employee> {
-        console.log(employeeData)
-        return new Promise(resolve => {
+        return new Promise((resolve,reject) => {
             const emp = this.create(employeeData);
-            this.save(emp);
-            resolve(emp);
+            this.save(emp).then(resp=>{
+                resolve(emp);
+            })
+            .catch(err=>{
+                reject(new HttpException(err, HttpStatus.NOT_FOUND));
+            })
+            
         });
     }
 
@@ -49,5 +56,32 @@ export class EmployeesRepository extends Repository<Employee> {
               }
             });
         });
+    }
+
+    async updateEmpForm(id:string,updateEmployee: UpdateEmployeeDto):Promise<Employee>
+    {
+       return new Promise((resolve,reject)=>{
+            const update = this.update(id,updateEmployee);
+            const emp_id = id
+            update.then(response=>{
+                if(response)
+                {
+                    const find_emp = this.findOne({where:{id:emp_id}})
+                    find_emp.then(res=>{
+                        if(res)
+                        {
+                            this.update(emp_id,updateEmployee)
+                            resolve(find_emp)
+                        }
+                        else
+                        {
+                            reject(new HttpException('Employee not found', HttpStatus.NOT_FOUND));
+                        }
+                    })
+                }
+            }).catch(err=>{
+                reject(new HttpException('Employee not found', HttpStatus.NOT_FOUND));
+            })
+       })
     }
 }
